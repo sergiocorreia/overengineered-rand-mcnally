@@ -1,0 +1,125 @@
+year	edition	state	city	pdf_part	start	end
+1887	1	"NY"	"New York"	0	370	370
+1888	2	"NY"	"New York"	0	408	408
+1888	2	"PA"	"Philadelphia"	0	451	451
+1890	2	"NY"	"New York"	0	461	462
+1890	2	"PA"	"Philadelphia"	0	519	519
+1891	1	"NY"	"New York"	0	445	447
+1891	1	"PA"	"Philadelphia"	0	504	504
+1894	1	"IL"	"Chicago"	0	160	161
+1894	1	"MA"	"Boston"	0	289	290
+1894	1	"NY"	"New York"	0	448	451
+1894	1	"PA"	"Philadelphia"	0	518	519
+1898	2	"IL"	"Chicago"	0	120	121
+1898	2	"MA"	"Boston"	0	243	243
+1898	2	"MD"	"Baltimore"	0	225	225
+1898	2	"NY"	"New York"	0	388	391
+1898	2	"PA"	"Philadelphia"	0	464	464
+1898	2	"PA"	"Pittsburg"	0	471	471
+1898	2	"RI"	"Providence"	0	486	486
+1900	1	"IL"	"Chicago"	0	134	135
+1900	1	"MA"	"Boston"	0	262	262
+1900	1	"MD"	"Baltimore"	0	244	244
+1900	1	"NY"	"New York"	0	417	421
+1900	1	"PA"	"Philadelphia"	0	498	498
+1900	1	"PA"	"Pittsburg"	0	505	505
+1900	1	"RI"	"Providence"	0	516	516
+1900	2	"IL"	"Chicago"	0	95	96
+1900	2	"MA"	"Boston"	0	212	212
+1900	2	"MD"	"Baltimore"	0	200	200
+1900	2	"NY"	"New York"	0	346	350
+1900	2	"PA"	"Philadelphia"	0	421	421
+1900	2	"PA"	"Pittsburg"	0	427	427
+1900	2	"RI"	"Providence"	0	438	438
+1901	1	"IL"	"Chicago"	0	149	150
+1901	1	"MA"	"Boston"	0	293	293
+1901	1	"MD"	"Baltimore"	0	275	275
+1901	1	"NY"	"New York"	0	471	474
+1901	1	"PA"	"Philadelphia"	0	564	564
+1901	1	"PA"	"Pittsburg"	0	571	571
+1901	1	"RI"	"Providence"	0	586	586
+1903	1	"IL"	"Chicago"	0	162	165
+1903	1	"MA"	"Boston"	0	359	359
+1903	1	"NY"	"New York"	0	573	576
+1903	1	"PA"	"Philadelphia"	0	694	694
+1905	2	"IL"	"Chicago"	0	200	201
+1905	2	"MA"	"Boston"	0	414	414
+1905	2	"NY"	"New York"	0	653	657
+1905	2	"PA"	"Philadelphia"	0	806	806
+1905	2	"RI"	"Providence"	0	842	842
+1906	2	"IL"	"Chicago"	0	200	201
+1906	2	"MA"	"Boston"	0	422	422
+1906	2	"MD"	"Baltimore"	0	404	404
+1906	2	"NY"	"New York"	0	661	665
+1906	2	"PA"	"Philadelphia"	0	818	818
+1906	2	"RI"	"Providence"	0	854	854
+1907	1	"IL"	"Chicago"	3	33	34
+1907	1	"MA"	"Boston"	4	92	92
+1907	1	"MD"	"Baltimore"	4	76	76
+1907	1	"NY"	"New York"	6	36	40
+1907	1	"PA"	"Philadelphia"	7	42	42
+1907	1	"RI"	"Providence"	7	74	74
+1909	1	"IL"	"Chicago"	3	32	32
+1909	1	"MA"	"Boston"	4	98	98
+1909	1	"MD"	"Baltimore"	4	81	81
+1909	1	"NY"	"New York"	6	39	43
+1909	1	"PA"	"Philadelphia"	7	43	43
+1909	1	"RI"	"Providence"	7	72	72
+1909	2	"IL"	"Chicago"	0	200	200
+1909	2	"MA"	"Boston"	0	428	428
+1909	2	"MD"	"Baltimore"	0	408	408
+1909	2	"NY"	"New York"	0	676	680
+1909	2	"PA"	"Philadelphia"	0	846	846
+1909	2	"RI"	"Providence"	0	878	878
+1910	1	"IL"	"Chicago"	3	35	35
+1910	1	"MA"	"Boston"	4	98	98
+1910	1	"MD"	"Baltimore"	4	80	80
+1910	1	"NY"	"NYC2"	6	42	45
+1910	1	"NY"	"New York"	6	37	37
+1910	1	"PA"	"Philadelphia"	7	43	43
+1910	2	"IL"	"Chicago"	0	240	240
+1910	2	"MA"	"Boston"	0	478	479
+1910	2	"MD"	"Baltimore"	0	461	461
+1910	2	"NY"	"New York"	0	736	736
+1910	2	"PA"	"Philadelphia"	0	938	938
+1911	1	"IL"	"Chicago"	0	253	253
+1911	1	"MA"	"Boston"	0	508	509
+1911	1	"MD"	"Baltimore"	0	489	489
+1911	1	"NY"	"NYC2"	0	801	804
+1911	1	"NY"	"New York"	0	796	796
+1911	1	"PA"	"Philadelphia"	0	1004	1004
+1911	2	"IL"	"Chicago"	0	259	259
+1911	2	"MA"	"Boston"	0	536	537
+1911	2	"MD"	"Baltimore"	0	517	517
+1911	2	"NY"	"NYC2"	0	849	852
+1911	2	"NY"	"New York"	0	844	844
+1911	2	"PA"	"Philadelphia"	0	1078	1078
+1912	2	"IL"	"Chicago"	0	366	366
+1912	2	"MA"	"Boston"	0	754	755
+1912	2	"MD"	"Baltimore"	0	731	731
+1912	2	"NY"	"NYC2"	0	1121	1124
+1912	2	"NY"	"New York"	0	1116	1116
+1912	2	"PA"	"Philadelphia"	0	1398	1398
+1913	1	"IL"	"Chicago"	0	277	281
+1913	1	"MA"	"Boston"	0	582	583
+1913	1	"MD"	"Baltimore"	0	559	559
+1913	1	"NY"	"New York"	0	908	908
+1913	1	"PA"	"Philadelphia"	0	1148	1148
+1913	2	"IL"	"Chicago"	0	285	285
+1913	2	"MA"	"Boston"	0	580	581
+1913	2	"MD"	"Baltimore"	0	557	557
+1913	2	"NY"	"NYC2"	0	913	918
+1913	2	"NY"	"New York"	0	908	908
+1913	2	"PA"	"Philadelphia"	0	1152	1152
+1914	1	"IL"	"Chicago"	0	286	286
+1914	1	"MA"	"Boston"	0	578	579
+1914	1	"MD"	"Baltimore"	0	555	555
+1914	1	"NY"	"NYC2"	0	911	916
+1914	1	"NY"	"New York"	0	906	906
+1914	1	"PA"	"Philadelphia"	0	1144	1144
+1914	2	"IL"	"Chicago"	0	300	300
+1914	2	"MA"	"Boston"	0	592	593
+1914	2	"MD"	"Baltimore"	0	569	569
+1914	2	"NY"	"NYC2"	0	943	952
+1914	2	"NY"	"New York"	0	938	938
+1914	2	"PA"	"Philadelphia"	0	1174	1174

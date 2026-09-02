@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rand-mcnally-v2"
+version = "0.1.0"
+description = "Audit and selectively re-extract problematic pages from the Rand McNally Bankers' Directory panel."
+requires-python = ">=3.12"
+dependencies = [
+    "banknames",
+    "locro",
+    "pillow>=12",
+    "pydantic>=2.12",
+    "pymupdf>=1.26",
+    "pypdf>=6.0",
+    "requests>=2.32",
+    "rich>=14",
+    "typer>=0.12",
+    "yachay",
+]
+
+[tool.uv.sources]
+banknames = { path = "/home/sergio/git/clv-banknorm", editable = false }
+locro = { path = "/home/sergio/git/clv-locro", editable = false }
+yachay = { path = "/home/sergio/git/clv-yachay", editable = false }
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.12",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/histdata_pipeline"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests", "code"]
+python_files = ["test_*.py"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 150
+target-version = "py312"
+extend-exclude = ["*.md", "code/scheme-cleanplots_ev2.scheme"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"code/check_prompt_schema_consistency.py" = ["I001"]
+"code/schema_*.py" = ["E501", "I001"]

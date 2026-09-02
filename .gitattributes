@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.do text eol=lf
+*.ado text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.scheme text eol=lf
+*.tsv text eol=lf

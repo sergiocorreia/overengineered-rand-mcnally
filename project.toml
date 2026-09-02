@@ -1,0 +1,179 @@
+[template]
+initialized = true
+
+[project]
+name = "Rand McNally Bankers' Directory OCR Revision"
+slug = "rand-mcnally-v2"
+description = "Audit and selectively re-extract problematic pages from the Rand McNally Bankers' Directory panel."
+
+[restoration]
+legacy_root = "/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally"
+legacy_root_read_only = true
+legacy_reference_root = "/home/sergio/data/rand-mcnally-v2/legacy-reference"
+smoke_source_id = "rand_mcnally_1881_1_hathi"
+smoke_year = 1881
+smoke_edition = 1
+smoke_pages = [84, 143]
+provisional_page_denominator = 106948
+provisional_rerun_fraction = 0.05
+provisional_rerun_ceiling = 5347
+
+[storage]
+pdf_storage = "external"
+external_data_root = "/home/sergio/data/rand-mcnally-v2"
+local_pdf_directory = "sources/pdfs"
+external_pdf_subdirectory = "pdfs"
+ocr_subdirectory = "ocr"
+render_subdirectory = "rendered-pages"
+acquisition_run_subdirectory = "acquisition-runs"
+selection_cache_subdirectory = "page-selection-cache"
+page_review_image_subdirectory = "page-review-images"
+cache_subdirectory = "data-extraction/cache"
+export_subdirectory = "data-extraction/exports"
+alternate_export_subdirectory = "data-extraction/alternate-exports"
+banknorm_cache_subdirectory = "banknorm-cache"
+
+[dataset]
+shape = "panel"
+keys = []
+entity_keys = []
+time_key = ""
+value_fields = []
+raw_fields = ["entity_raw", "period_raw", "value_raw"]
+extraction_fields = [
+  "manifest_index", "page_id", "pdf_relative_path", "physical_page",
+  "source_sha256", "render_sha256", "contract_signature", "source_id",
+  "provider", "title", "source_date", "final_type", "classification_source", "manual_notes",
+  "ocr_method", "ocr_text_sha256", "page_manifest_sha256", "status",
+  "error_type", "error_message", "document_status", "scan_quality", "page_note",
+  "unmapped_text", "record_index", "record_id", "entity_raw", "entity",
+  "period_raw", "period", "value_raw", "value", "value_status",
+  "correction_raw", "note", "supplemental_facts", "uncertain_fields",
+]
+record_id_field = "record_id"
+source_page_field = "page_id"
+primary_output = "data/rand-mcnally-v2.tsv"
+
+[stages]
+reconciliation = true
+
+[source]
+provider = "manifest"
+manifest = "sources/source_manifest.tsv"
+inventory = "data/source_inventory.tsv"
+sample_size = 3
+download_workers = 2
+
+[fraser]
+enabled = false
+title_slug = ""
+browse_decade = ""
+start_date = ""
+end_date = ""
+
+[selection]
+pipeline_version = "0.1.0"
+include_types = ["selected"]
+embedded_text_min_characters = 80
+locro_target_window = 2
+require_complete_review = true
+
+[extraction]
+pipeline_version = "0.1.0"
+selected_pages = "data/selected_pages.tsv"
+current_tsv = "data-extraction/exports/current/flat.tsv"
+schema_class = "PageExtraction"
+record_list_field = "records"
+page_status_field = "document_status"
+target_page_status = "target"
+scan_quality_field = "scan_quality"
+clear_scan_quality = "clear"
+uncertain_fields_field = "uncertain_fields"
+sample_size = 3
+default_workers = 10
+render_dpi = 220
+render_format = "jpeg"
+media_resolution = "ultra_high"
+
+[model]
+project_id = "rand-mcnally-489320"
+location = "global"
+name = "gemini-3.7-flash"
+think_level = "medium"
+max_output_tokens = 64000
+default_service = "flex"
+
+[service]
+standard_max_pages = 20
+standard_request_ceiling = 50
+flex_default_max_requests = 50
+
+[review]
+record_list_field = "records"
+columns = ["entity_raw", "entity", "period_raw", "period", "value_raw", "value", "note", "uncertain_fields"]
+port_pages = 8765
+port_records = 8766
+
+[pricing]
+as_of = ""
+input_per_million = 0.0
+output_per_million = 0.0
+thinking_per_million = 0.0
+review_max_age_hours = 24
+
+[standardization]
+
+[standardization.banknorm]
+enabled = false
+state_field = "state_raw"
+city_field = "city_raw"
+bank_field = ""
+date_field = ""
+state_output = "state_banknorm"
+city_output = "city_banknorm"
+city_id_output = "city_id_banknorm"
+bank_output = "bank_banknorm"
+bank_id_output = "bank_id_banknorm"
+
+[reconciliation]
+repeated_vintages = false
+source_priority_field = "source_priority"
+
+[quality]
+input_tsv = "data/rand-mcnally-v2.tsv"
+decisions_tsv = "manual/quality_decisions.tsv"
+corrections_tsv = "manual/record_corrections.tsv"
+output_directory = "output/7-quality-control"
+bounds = []
+provenance_fields = ["record_id", "page_id", "source_sha256", "render_sha256", "contract_signature", "status"]
+identity_valid_fields = []
+accounting_rules = []
+cluster_minimum = 3
+
+[quality.panel]
+expected_frequency = ""
+isolated_ratio = 3.0
+return_ratio = 1.5
+one_sided_ratio = 5.0
+persistent_ratio = 3.0
+coverage_ratio = 0.95
+expected_times = []
+persistent_window = 3
+
+[quality.cross_section]
+group_fields = []
+robust_z = 6.0
+outlier_ratio = 10.0
+heaping_base = 10
+heaping_share = 0.8
+heaping_minimum = 20
+
+[quality.release]
+blocking_severities = ["blocking"]
+
+[alternate_extraction]
+max_pages = 20
+max_requests = 50
+dpi = 400
+band_height = 280
+band_overlap = 40

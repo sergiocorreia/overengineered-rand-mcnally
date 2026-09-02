@@ -1,0 +1,56 @@
+# Track only durable project definitions, code, documentation, fixtures, and decisions.
+/*
+!/.gitattributes
+!/.gitignore
+!/AGENTS.md
+!/README.md
+!/REFERENCES.md
+!/project.toml
+!/pyproject.toml
+!/uv.lock
+!/code/
+!/guides/
+!/src/
+!/templates/
+!/tools/
+!/tests/
+!/examples/
+!/manual/
+!/sources/
+
+# Source metadata is durable; source documents are not Git content.
+/sources/*
+!/sources/README.md
+!/sources/*.tsv
+!/sources/*.csv
+!/sources/*.json
+!/sources/*.jsonl
+!/sources/*.txt
+
+# Representative fixtures may be tracked deliberately.
+/examples/.gitkeep
+
+# Human decisions are durable. Local editor files and generated queues are not.
+!/manual/**
+/manual/**/*~
+/manual/**/*.tmp
+
+# Python environments and caches.
+.venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Large or generated project artifacts.
+/data/
+/input/
+/output/
+/temp/
+*.pdf
+*.tif
+*.tiff
+*.jp2
+*.zip
+*.part
+*.log

@@ -1,0 +1,130 @@
+manifest_order	year	edition	configured_source	range_start	range_end	configured_range_kind	schema_regime	unit_multiplier	rotation_degrees	source_note	todo	manifest_row_status	selected_source_available	selected_source_type	selected_source_path	alternate_source_count	alternate_source_paths	output_token_file_count	output_page_count	invalid_row_note
+1	1879	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+2	1879	2	archive-raw	79	271	raw_scan_index	1879	1	90	jp2	columns: town, bank, president, cashier, capital, surplus, ny correspondent, xyz correspondent; notice street name in nyc; notice how nyc doesn’t have nyc corr	configured	yes	raw_image_directory	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1879-2-archive-raw	1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1879-2-archive.pdf	1	193	
+3	1880	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+4	1880	2	google	74	272	physical_pdf_page	1879	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1880-2-google.pdf	0		1	199	
+5	1881	1	hathi	84	282	physical_pdf_page	1879	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1881-1-hathi.pdf	0		1	199	
+6	1881	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+7	1882	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+8	1882	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+9	1883	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+10	1883	2	archive-raw	96	441	raw_scan_index	1879	1	90	jp2	columns: town, bank, president, cashier, capital, surplus, ny correspondent, xyz correspondent	configured	yes	raw_image_directory	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1883-2-archive-raw	2	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1883-2-archive.pdf;/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1883-2-hathi.pdf	1	346	
+11	1884	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+12	1884	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+13	1885	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+14	1885	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+15	1886	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+16	1886	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+17	1887	1	hathi	86	487	physical_pdf_page	1888	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1887-1-hathi.pdf	0		1	402	
+18	1887	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+19	1888	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+20	1888	2	hathi	116	527	physical_pdf_page	1888	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1888-2-hathi.pdf	0		1	412	
+21	1889	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+22	1889	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+23	1890	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+24	1890	2	hathi	130	632	physical_pdf_page	1888	1	90		crappy quality	configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1890-2-hathi.pdf	0		1	503	
+25	1891	1	archive-raw	127	617	raw_scan_index	1888	1	90	jp2	columns: town, bank, president, vp, cashier, ac, capital, surplus, undivided, correspondents	configured	yes	raw_image_directory	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1891-1-archive-raw	1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1891-1-archive.pdf	1	491	
+26	1891	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+27	1892	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+28	1892	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+29	1893	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+30	1893	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+31	1894	1	hathi	72	626	physical_pdf_page	1894	1	90		has an extra pop on the left; only symbol is * for members of CH	configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1894-1-hathi.pdf	0		1	555	
+32	1894	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+33	1895	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+34	1895	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+35	1896	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+36	1896	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+37	1897	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+38	1897	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+39	1898	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+40	1898	2	google	38	572	physical_pdf_page	1898	1	90		bad quality	configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1898-2-google.pdf	0		1	535	
+41	1899	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+42	1899	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+43	1900	1	hathi	46	609	physical_pdf_page	1898	1	0			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1900-1-hathi.pdf	0		1	564	
+44	1900	2	other	28	513	physical_pdf_page	1898	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1900-2-other.pdf	0		1	486	
+45	1901	1	hathi	52	683	physical_pdf_page	1898	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1901-1-hathi.pdf	0		1	632	
+46	1901	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+47	1902	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+48	1902	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+49	1903	1	hathi	41	844	physical_pdf_page	1898	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1903-1-hathi.pdf	0		1	804	
+50	1803	1	hathi	1	2	physical_pdf_page	1898	1	0			invalid	no	missing		0		0	0	year outside 1879-1942 corpus; likely stray test row
+51	1903	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+52	1904	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+53	1904	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+54	1905	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+55	1905	2	google	55	1011	physical_pdf_page	1898	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1905-2-google.pdf	0		1	957	
+56	1906	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+57	1906	2	google	47	1017	physical_pdf_page	1898	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1906-2-google.pdf	0		1	971	
+58	1907	1	fraser	2	8	multipart_pdf_position	1898	1	0	folder		configured	no	missing		0		7	918	
+59	1907	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+60	1908	1				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+61	1908	2				not_applicable		1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+62	1909	1	fraser	2	8	multipart_pdf_position	1898	1	0	folder		configured	no	missing		0		7	935	
+63	1909	2	google	36	1063	physical_pdf_page	1898	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1909-2-google.pdf	0		1	1028	
+64	1910	1	fraser	2	8	multipart_pdf_position	1910	1	0	folder		configured	no	missing		0		7	970	
+65	1910	2	google	50	1159	physical_pdf_page	1910	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1910-2-google.pdf	0		1	1110	
+66	1911	1	google	41	1261	physical_pdf_page	1911	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1911-1-google.pdf	0		1	1221	
+67	1911	2	hathi	46	1359	physical_pdf_page	1911	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1911-2-hathi.pdf	0		1	1314	
+68	1912	1				not_applicable	1911	1				blank_source_placeholder	not_applicable	not_configured		0		0	0	
+69	1912	2	google	46	1689	physical_pdf_page	1911	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1912-2-google.pdf	0		1	1644	
+70	1913	1	google	52	1463	physical_pdf_page	1911	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1913-1-google.pdf	0		1	1412	
+71	1913	2	google	46	1453	physical_pdf_page	1911	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1913-2-google.pdf	0		1	1408	
+72	1914	1	other	48	1447	physical_pdf_page	1911	1	90		bad quality	configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1914-1-other.pdf	1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1914-1-hathi.pdf	1	1400	
+73	1914	2	google	52	1489	physical_pdf_page	1911	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1914-2-google.pdf	0		1	1438	
+74	1915	1	google	52	1539	physical_pdf_page	1911	1	90			configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1915-1-google.pdf	0		1	1488	
+75	1915	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder	doesnt have fed membership	configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1915-2-hathi.pdf	7	1378	
+76	1916	1	google	45	1496	physical_pdf_page	1911	1	90		doesnt have fed membership	configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1916-1-google.pdf	0		1	1452	
+77	1916	2	hathi	48	1585	physical_pdf_page	1911	1	90		doesnt have fed membership; hathi seems better	configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1916-2-hathi.pdf	0		1	1538	
+78	1917	1	hathi	44	1613	physical_pdf_page	1911	1	90		doesnt have fed membership; requested another version from google books; current ones kinda suck	configured	yes	pdf	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1917-1-hathi.pdf	2	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1917-1-google.pdf;/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1917-1-other.pdf	1	1570	
+79	1917	2	fraser	2	12	multipart_pdf_position	1911	1	0	folder	doesnt have fed membership	configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1917-2-google.pdf	11	1524	
+80	1918	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder	doesnt have fed membership	configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1918-1-google.pdf	7	1562	
+81	1918	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder	doesnt have fed membership	configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1918-2-hathi.pdf	7	1584	
+82	1919	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1919-1-google.pdf	7	1644	
+83	1919	2	fraser	2	9	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1919-2-google.pdf	8	1686	
+84	1920	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1920-1-google.pdf	7	1710	
+85	1920	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1920-2-google.pdf	7	1773	
+86	1921	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1921-1-hathi.pdf	7	1813	
+87	1921	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1921-2-google.pdf	7	1840	
+88	1922	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1922-1-google.pdf	7	1882	
+89	1922	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1922-2-hathi.pdf	7	1976	
+90	1923	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	2018	
+91	1923	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1923-2-google.pdf	7	2046	
+92	1924	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	2035	
+93	1924	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1924-2-google.pdf	7	1671	
+94	1925	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1755	
+95	1925	2	fraser	2	7	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1925-2-google.pdf	6	1765	
+96	1926	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1779	
+97	1926	2	fraser	2	7	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		6	1770	
+98	1927	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1756	
+99	1927	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		1	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1927-2-google.pdf	7	1847	
+100	1928	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1824	
+101	1928	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1835	
+102	1929	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1854	
+103	1929	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1864	
+104	1930	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	yes	multi_pdf_directory	/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1930-1-fraser	0		7	1936	
+105	1930	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1876	
+106	1931	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1820	
+107	1931	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1758	
+108	1932	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1690	
+109	1932	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1626	
+110	1933	1	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1541	
+111	1933	2	fraser	2	8	multipart_pdf_position	1911	1	0	folder		configured	no	missing		0		7	1385	
+112	1934	1	fraser	2	8	multipart_pdf_position	1934	1000	0	folder	Now 11 cols instead of 8; and in thousands; col3 might be cons with col2; just use a new prompt+schema	configured	no	missing		0		7	1325	
+113	1934	2	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1290	
+114	1935	1	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1352	
+115	1935	2	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1268	
+116	1936	1	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1522	
+117	1936	2	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1234	
+118	1937	1	fraser	2	7	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		6	1235	
+119	1937	2	fraser	2	7	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		6	1241	
+120	1938	1	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1252	
+121	1938	2	fraser	2	7	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		6	1260	
+122	1939	1	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1258	
+123	1939	2	fraser	2	7	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		6	1263	
+124	1940	1	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1264	
+125	1940	2	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		7	1266	
+126	1941	1	fraser	3	9	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		0	0	
+127	1941	2	fraser	3	9	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		0	0	
+128	1942	1	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		0	0	
+129	1942	2	fraser	2	8	multipart_pdf_position	1934	1000	0	folder		configured	no	missing		0		0	0	

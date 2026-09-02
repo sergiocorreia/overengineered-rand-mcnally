@@ -1,0 +1,13 @@
+{
+  "contract_signature": "",
+  "evidence_signature": "",
+  "render_signature": "",
+  "preflight_signature": "",
+  "approved_max_requests": 0,
+  "gold_passed": false,
+  "trial_passed": false,
+  "cache_reuse_passed": false,
+  "cost_reviewed": false,
+  "cost_reviewed_at": "",
+  "notes": "Record true only after direct evidence. Full extraction remains blocked while any gate is false."
+}

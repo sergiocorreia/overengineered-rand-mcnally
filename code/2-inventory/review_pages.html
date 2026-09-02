@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page selection review</title>
+  <style>
+    :root { color-scheme: light; font: 15px system-ui, sans-serif; background: #f3f1ea; color: #20231f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; display: grid; grid-template-rows: auto 1fr; height: 100vh; }
+    header { display: flex; gap: .8rem; align-items: center; padding: .7rem 1rem; background: #19372d; color: white; }
+    header strong { margin-right: auto; }
+    button, select, input, textarea { font: inherit; }
+    button { border: 1px solid #9d9a8f; border-radius: 5px; padding: .45rem .65rem; background: white; cursor: pointer; }
+    button.active { outline: 3px solid #e8b148; }
+    main { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 340px; }
+    .scan { overflow: auto; text-align: center; background: #292b29; }
+    .scan img { max-width: none; transform-origin: top center; box-shadow: 0 0 20px #0008; }
+    aside { overflow: auto; padding: 1rem; border-left: 1px solid #cbc7bb; background: #fffdf7; }
+    .meta { color: #5d635d; font-size: .9rem; overflow-wrap: anywhere; }
+    .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: 1rem 0; }
+    textarea { width: 100%; min-height: 8rem; padding: .6rem; }
+    .shortcuts { line-height: 1.65; color: #5d635d; font-size: .85rem; }
+    .status { padding: .45rem .6rem; border-radius: 4px; background: #ece9df; }
+    @media (max-width: 850px) { main { grid-template-columns: 1fr; } aside { position: fixed; right: 0; width: 320px; height: calc(100vh - 54px); } }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Page review</strong>
+    <button id="prevDoc" title="Shift+Left">Previous document</button>
+    <button id="prev" title="Left">Previous</button>
+    <span id="progress"></span>
+    <button id="next" title="Right">Next</button>
+    <button id="nextDoc" title="Shift+Right">Next document</button>
+    <label><input id="unresolved" type="checkbox"> unresolved only (U)</label>
+  </header>
+  <main>
+    <div class="scan"><img id="image" alt="Source page"></div>
+    <aside>
+      <h2 id="title">Loading…</h2>
+      <p class="meta" id="identity"></p>
+      <p class="status" id="status"></p>
+      <p class="meta" id="evidence"></p>
+      <div class="actions">
+        <button data-type="selected">Accept (A)</button>
+        <button data-type="flagged">Flag (F)</button>
+        <button data-type="excluded">Exclude (X)</button>
+      </div>
+      <label>Notes<textarea id="notes"></textarea></label>
+      <p><button id="save">Save and next (S)</button> <button id="minus">−</button> <button id="plus">+</button></p>
+      <p><label>Go to physical page <input id="goto" type="number" min="1" style="width:6rem"></label></p>
+      <p class="shortcuts">←/→ page · Shift+←/→ document · A accept · F flag · X exclude · S save/next · U unresolved filter · +/− zoom · G focus go-to-page</p>
+    </aside>
+  </main>
+  <script>
+    let state, queue = [], index = 0, chosen = "", dirty = false, zoom = 1;
+    const $ = id => document.getElementById(id);
+    const current = () => queue[index];
+    async function load() { state = await (await fetch('/api/state')).json(); rebuild(); }
+    function rebuild(keepId) {
+      const unresolved = $('unresolved').checked;
+      queue = state.pages.filter(p => !unresolved || ['unreviewed','flagged'].includes(p.final_type));
+      index = Math.max(0, keepId ? queue.findIndex(p => p.page_id === keepId) : 0);
+      if (index < 0) index = 0;
+      show();
+    }
+    function show() {
+      const p = current();
+      if (!p) { $('title').textContent = 'No pages in this filter'; $('image').removeAttribute('src'); return; }
+      chosen = p.final_type === 'unreviewed' ? '' : p.final_type; dirty = false;
+      $('title').textContent = p.title || p.source_id;
+      const sourceDate = p.source_date ? ` · source date ${p.source_date}` : '';
+      $('identity').textContent = `${p.source_id}${sourceDate} · physical page ${p.page}/${p.page_count} · ${p.page_id}`;
+      $('status').textContent = `${p.final_type} (${p.classification_source})`;
+      $('evidence').textContent = `${p.ocr_method}; automatic: ${p.automatic_classification} (${p.automatic_score}) ${p.automatic_reasons}`;
+      $('notes').value = p.manual_notes || '';
+      $('image').src = `/api/image?page_id=${encodeURIComponent(p.page_id)}`;
+      $('image').style.transform = `scale(${zoom})`;
+      $('progress').textContent = `${index + 1}/${queue.length} · ${state.progress.resolved}/${state.progress.total} resolved`;
+      document.querySelectorAll('[data-type]').forEach(b => b.classList.toggle('active', b.dataset.type === chosen));
+    }
+    function move(delta) { if (dirty && !confirm('Discard unsaved changes?')) return; index = Math.max(0, Math.min(queue.length - 1, index + delta)); show(); }
+    function moveDoc(delta) { if (dirty && !confirm('Discard unsaved changes?')) return; const p = current(); if (!p) return; let i = index + delta; while (i >= 0 && i < queue.length && queue[i].source_id === p.source_id) i += delta; if (i >= 0 && i < queue.length) { index = i; show(); } }
+    function choose(value) { chosen = value; dirty = true; document.querySelectorAll('[data-type]').forEach(b => b.classList.toggle('active', b.dataset.type === chosen)); }
+    async function save() {
+      const p = current(); if (!p || !chosen) { alert('Choose Accept, Flag, or Exclude first.'); return; }
+      const response = await fetch('/api/decision', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({page_id:p.page_id, classification:chosen, notes:$('notes').value})});
+      const payload = await response.json(); if (!response.ok) { alert(payload.error); return; }
+      state = payload; dirty = false; const old = p.page_id, oldIndex = index;
+      if ($('unresolved').checked) { rebuild(); index = Math.min(oldIndex, Math.max(0, queue.length - 1)); show(); }
+      else { rebuild(old); move(1); }
+    }
+    document.querySelectorAll('[data-type]').forEach(b => b.onclick = () => choose(b.dataset.type));
+    $('notes').oninput = () => dirty = true; $('prev').onclick = () => move(-1); $('next').onclick = () => move(1);
+    $('prevDoc').onclick = () => moveDoc(-1); $('nextDoc').onclick = () => moveDoc(1); $('save').onclick = save;
+    $('unresolved').onchange = () => rebuild(current()?.page_id); $('plus').onclick = () => { zoom += .15; show(); }; $('minus').onclick = () => { zoom = Math.max(.4, zoom - .15); show(); };
+    $('goto').onchange = () => { if (dirty && !confirm('Discard unsaved changes?')) return; const p=current(); const i=queue.findIndex(x => x.source_id===p.source_id && x.page===Number($('goto').value)); if(i>=0){index=i;show();} };
+    window.onbeforeunload = e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } };
+    window.onkeydown = e => { if (e.target.matches('textarea,input') && e.key.toLowerCase() !== 'g') return; if(e.key==='ArrowLeft') e.shiftKey?moveDoc(-1):move(-1); else if(e.key==='ArrowRight') e.shiftKey?moveDoc(1):move(1); else if(e.key.toLowerCase()==='a') choose('selected'); else if(e.key.toLowerCase()==='f') choose('flagged'); else if(e.key.toLowerCase()==='x') choose('excluded'); else if(e.key.toLowerCase()==='s') save(); else if(e.key.toLowerCase()==='u') {$('unresolved').checked=!$('unresolved').checked; rebuild(current()?.page_id);} else if(e.key==='+') {zoom+=.15;show();} else if(e.key==='-'){zoom=Math.max(.4,zoom-.15);show();} else if(e.key.toLowerCase()==='g') $('goto').focus(); };
+    load();
+  </script>
+</body>
+</html>

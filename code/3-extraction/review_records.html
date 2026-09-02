@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Extraction record review</title>
+  <style>
+    :root { color-scheme: light; font-family: ui-sans-serif, system-ui, sans-serif; --ink:#16202a; --line:#cbd5df; --accent:#0a6; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); background:#eef2f5; }
+    header { position:sticky; top:0; z-index:3; display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; padding:.55rem .7rem; background:#fff; border-bottom:1px solid var(--line); }
+    button, input, select, textarea { font:inherit; }
+    button { padding:.38rem .6rem; border:1px solid #9daab7; border-radius:.3rem; background:#fff; cursor:pointer; }
+    button.primary { background:#086; color:#fff; border-color:#086; }
+    button.active { box-shadow:0 0 0 2px #fdc inset; }
+    #status { margin-left:auto; font-variant-numeric:tabular-nums; }
+    main { display:grid; grid-template-columns:minmax(38%, 1fr) minmax(52%, 1.35fr); height:calc(100vh - 55px); gap:.5rem; padding:.5rem; }
+    .pane { background:#fff; border:1px solid var(--line); border-radius:.35rem; overflow:auto; }
+    #scan-wrap { display:flex; justify-content:center; align-items:flex-start; background:#343a40; }
+    #scan { max-width:none; transform-origin:top center; }
+    #editor { padding:.65rem; }
+    .meta { display:grid; grid-template-columns:max-content 1fr; gap:.2rem .6rem; margin-bottom:.5rem; font-size:.9rem; }
+    table { border-collapse:collapse; width:max-content; min-width:100%; font-size:.84rem; }
+    th, td { border:1px solid var(--line); padding:.2rem; vertical-align:top; }
+    th { position:sticky; top:0; background:#e9eff3; z-index:1; }
+    td input, td textarea { width:12rem; min-height:2rem; border:0; padding:.2rem; background:#fffef6; }
+    .row-actions { white-space:nowrap; }
+    .row-actions button { padding:.18rem .3rem; }
+    #notes, #raw { width:100%; min-height:5rem; }
+    #raw { min-height:20rem; font-family:ui-monospace, monospace; }
+    .hidden { display:none; }
+    .dirty { color:#b30; font-weight:700; }
+    @media (max-width:900px) { main { grid-template-columns:1fr; height:auto; } #scan-wrap { height:55vh; } }
+  </style>
+</head>
+<body>
+<header>
+  <button id="prev-doc" title="Previous document (Shift+K)">⇤ Doc</button>
+  <button id="prev" title="Previous page (K or ←)">← Page</button>
+  <label>Go <input id="goto" type="number" min="1" style="width:5rem"></label>
+  <button id="next" title="Next page (J or →)">Page →</button>
+  <button id="next-doc" title="Next document (Shift+J)">Doc ⇥</button>
+  <button id="zoom-out" title="Zoom out (-)">−</button><span id="zoom-label">100%</span><button id="zoom-in" title="Zoom in (+)">+</button>
+  <label><input id="unresolved" type="checkbox"> unresolved only</label>
+  <button data-state="accepted" title="Accept (A)">Accept</button>
+  <button data-state="flagged" title="Flag (F)">Flag</button>
+  <button data-state="excluded" title="Exclude (X)">Exclude</button>
+  <button id="save" class="primary" title="Save (Ctrl/Cmd+S)">Save</button>
+  <button id="save-next" class="primary" title="Save and next (Ctrl/Cmd+Enter)">Save + next</button>
+  <span id="status"></span>
+</header>
+<main>
+  <section id="scan-wrap" class="pane"><img id="scan" alt="Rendered historical page"></section>
+  <section id="editor" class="pane">
+    <div class="meta"><b>Page ID</b><span id="page-id"></span><b>Document</b><span id="document"></span><b>Model status</b><span id="model-status"></span></div>
+    <div><button id="add">Add row</button> <button id="toggle-raw">Raw JSON fallback</button></div>
+    <div id="grid-wrap"><table><thead id="head"></thead><tbody id="body"></tbody></table></div>
+    <div id="raw-wrap" class="hidden"><p>Edit the complete schema object only when the flat grid cannot represent the contract.</p><textarea id="raw"></textarea></div>
+    <p><label>Review notes<br><textarea id="notes"></textarea></label></p>
+    <div id="message" aria-live="polite"></div>
+  </section>
+</main>
+<script>
+let boot, current, index=0, zoom=1, dirty=false, state='unreviewed', recordsField='records';
+const $=id=>document.getElementById(id);
+const isTyping=()=>['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName);
+function setDirty(value=true){ dirty=value; $('status').classList.toggle('dirty',value); renderStatus(); }
+function renderStatus(){ if(!boot||!current)return; const p=boot.progress; $('status').textContent=`${index+1}/${current.total} · ${state} · unresolved ${p.unreviewed||0}${dirty?' · UNSAVED':''}`; document.querySelectorAll('[data-state]').forEach(b=>b.classList.toggle('active',b.dataset.state===state)); }
+function clone(v){return JSON.parse(JSON.stringify(v));}
+function cellValue(v){return Array.isArray(v)||v&&typeof v==='object'?JSON.stringify(v):v??'';}
+function parseCell(text, original){ if(Array.isArray(original)||original&&typeof original==='object'){try{return JSON.parse(text)}catch{return text}} return text===''&&original===null?null:text; }
+function drawGrid(){ const extraction=current.extraction||{}; const rows=extraction[recordsField]||[]; const columns=boot.columns.length?boot.columns:[...new Set(rows.flatMap(Object.keys))]; $('head').innerHTML='<tr><th>#</th>'+columns.map(c=>`<th>${c}</th>`).join('')+'<th>Actions</th></tr>'; $('body').innerHTML=''; rows.forEach((row,i)=>{const tr=document.createElement('tr'); tr.innerHTML=`<td>${i+1}</td>`+columns.map(c=>`<td><textarea data-row="${i}" data-field="${c}"></textarea></td>`).join('')+`<td class="row-actions"><button data-act="up">↑</button><button data-act="down">↓</button><button data-act="dup">⧉</button><button data-act="del">×</button></td>`; tr.querySelectorAll('textarea').forEach(el=>{el.value=cellValue(row[el.dataset.field]); el.addEventListener('input',()=>setDirty());}); tr.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>rowAction(i,b.dataset.act)); $('body').appendChild(tr); }); $('raw').value=JSON.stringify(extraction,null,2); }
+function collect(){ if(!$('raw-wrap').classList.contains('hidden')) return JSON.parse($('raw').value); const extraction=clone(current.extraction||{}), rows=extraction[recordsField]||[]; document.querySelectorAll('#body textarea').forEach(el=>{const i=+el.dataset.row, f=el.dataset.field; rows[i][f]=parseCell(el.value,rows[i][f]);}); extraction[recordsField]=rows; return extraction; }
+function rowAction(i,act){ let x; try{x=collect()}catch(e){return message(e.message,true)} const r=x[recordsField]||[]; if(act==='up'&&i>0)[r[i-1],r[i]]=[r[i],r[i-1]]; if(act==='down'&&i<r.length-1)[r[i+1],r[i]]=[r[i],r[i+1]]; if(act==='dup')r.splice(i+1,0,clone(r[i])); if(act==='del')r.splice(i,1); current.extraction=x; drawGrid(); setDirty(); }
+function emptyRecord(){ const props=boot.record_schema?.$defs?.Record?.properties||{}; return Object.fromEntries(Object.entries(props).map(([k,v])=>[k,v.default??(v.type==='array'?[]:null)])); }
+function message(text,bad=false){$('message').textContent=text;$('message').style.color=bad?'#b00':'#086';}
+async function api(url,options){const r=await fetch(url,options);const j=await r.json();if(!r.ok)throw Error(j.error||r.statusText);return j;}
+async function load(i){ if(dirty&&!confirm('Discard unsaved changes?'))return; index=Math.max(0,Math.min(boot.pages.length-1,i)); current=await api(`/api/page?index=${index}`); state=current.review_status; current.extraction=clone(current.extraction); $('scan').src=`/api/image?index=${index}`; $('page-id').textContent=current.model.page_id; $('document').textContent=`${current.model.pdf_relative_path}, physical page ${current.model.physical_page}`; $('model-status').textContent=current.model.status; $('notes').value=current.review?.review_notes||''; $('goto').value=index+1; drawGrid(); setDirty(false); message(''); }
+async function save(andNext=false){ try{const extraction=collect();const payload={page_id:current.model.page_id,source_sha256:current.model.source_sha256,render_sha256:current.model.render_sha256,contract_signature:current.model.contract_signature,expected_model_extraction_sha256:current.model_extraction_sha256,review_status:state==='unreviewed'?'flagged':state,review_notes:$('notes').value,extraction};const out=await api('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});boot.progress=out.progress;state=payload.review_status;boot.pages[index].review_status=state;current.review=out.saved;current.extraction=extraction;setDirty(false);message('Saved atomically.');if(andNext)navigate(1,true);}catch(e){message(e.message,true)} }
+function navigate(delta,unresolved=false){let i=index;do{i+=delta;if(i<0||i>=boot.pages.length)return;}while((unresolved||$('unresolved').checked)&&!['unreviewed','flagged'].includes(boot.pages[i].review_status));load(i);}
+function documentJump(direction){const doc=boot.pages[index].document;let i=index+direction;while(i>=0&&i<boot.pages.length&&boot.pages[i].document===doc)i+=direction;if(i>=0&&i<boot.pages.length)load(i);}
+document.querySelectorAll('[data-state]').forEach(b=>b.onclick=()=>{state=b.dataset.state;setDirty();});
+$('prev').onclick=()=>navigate(-1);$('next').onclick=()=>navigate(1);$('prev-doc').onclick=()=>documentJump(-1);$('next-doc').onclick=()=>documentJump(1);
+$('goto').onchange=()=>load(+$('goto').value-1);$('zoom-in').onclick=()=>zoomPage(.15);$('zoom-out').onclick=()=>zoomPage(-.15);
+function zoomPage(d){zoom=Math.max(.25,Math.min(3,zoom+d));$('scan').style.width=`${zoom*100}%`;$('zoom-label').textContent=`${Math.round(zoom*100)}%`;}
+$('add').onclick=()=>{try{const x=collect();(x[recordsField]??=[]).push(emptyRecord());current.extraction=x;drawGrid();setDirty();}catch(e){message(e.message,true)}};
+$('toggle-raw').onclick=()=>{try{if($('raw-wrap').classList.contains('hidden')){$('raw').value=JSON.stringify(collect(),null,2);$('raw-wrap').classList.remove('hidden');$('grid-wrap').classList.add('hidden')}else{current.extraction=JSON.parse($('raw').value);$('raw-wrap').classList.add('hidden');$('grid-wrap').classList.remove('hidden');drawGrid()}setDirty();}catch(e){message(e.message,true)}};
+$('raw').oninput=()=>setDirty();$('notes').oninput=()=>setDirty();$('save').onclick=()=>save();$('save-next').onclick=()=>save(true);
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
+window.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();save();return}if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();save(true);return}if(isTyping())return;const k=e.key.toLowerCase();if(e.shiftKey&&k==='j'){documentJump(1);return}if(e.shiftKey&&k==='k'){documentJump(-1);return}if(k==='j'||e.key==='ArrowRight')navigate(1);if(k==='k'||e.key==='ArrowLeft')navigate(-1);if(k==='a'){state='accepted';setDirty()}if(k==='f'){state='flagged';setDirty()}if(k==='x'){state='excluded';setDirty()}if(k==='+'||k==='=')zoomPage(.15);if(k==='-')zoomPage(-.15);});
+(async()=>{try{boot=await api('/api/bootstrap');recordsField=boot.record_list_field;await load(0);}catch(e){message(e.message,true)}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+source_order	source_id	provider	provider_id	title	source_date	item_url	download_url	acquisition_method	filename	expected_sha256	min_pages	max_pages	notes
+1	example_manual	Local archive	box-001	Replace with the source title				manual	example/manual_source.pdf		1		Download manually; add an ISO source_date when known and record a SHA-256 after the file is fixed.
+2	example_direct	FRASER	12345	Replace with the FRASER item title	1930-01-01	https://fraser.stlouisfed.org/title/example/12345	https://fraser.stlouisfed.org/docs/example.pdf	direct	example/fraser_source.pdf		1		Example only; do not use without replacing the metadata.

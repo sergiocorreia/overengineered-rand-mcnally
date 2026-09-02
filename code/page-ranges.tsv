@@ -1,0 +1,130 @@
+year	edition	source	start	end	variant	unit	note	rotation	todo
+1879	1					1			
+1879	2	archive-raw	79	271	1879	1	jp2	90	"columns: town, bank, president, cashier, capital, surplus, ny correspondent, xyz correspondent; notice street name in nyc; notice how nyc doesn’t have nyc corr"
+1880	1					1			
+1880	2	google	74	272	1879	1		90	
+1881	1	hathi	84	282	1879	1		90	
+1881	2					1			
+1882	1					1			
+1882	2					1			
+1883	1					1			
+1883	2	archive-raw	96	441	1879	1	jp2	90	"columns: town, bank, president, cashier, capital, surplus, ny correspondent, xyz correspondent"
+1884	1					1			
+1884	2					1			
+1885	1					1			
+1885	2					1			
+1886	1					1			
+1886	2					1			
+1887	1	hathi	86	487	1888	1		90	
+1887	2					1			
+1888	1					1			
+1888	2	hathi	116	527	1888	1		90	
+1889	1					1			
+1889	2					1			
+1890	1					1			
+1890	2	hathi	130	632	1888	1		90	crappy quality
+1891	1	archive-raw	127	617	1888	1	jp2	90	"columns: town, bank, president, vp, cashier, ac, capital, surplus, undivided, correspondents"
+1891	2					1			
+1892	1					1			
+1892	2					1			
+1893	1					1			
+1893	2					1			
+1894	1	hathi	72	626	1894	1		90	has an extra pop on the left; only symbol is * for members of CH
+1894	2					1			
+1895	1					1			
+1895	2					1			
+1896	1					1			
+1896	2					1			
+1897	1					1			
+1897	2					1			
+1898	1					1			
+1898	2	google	38	572	1898	1		90	bad quality
+1899	1					1			
+1899	2					1			
+1900	1	hathi	46	609	1898	1		0	
+1900	2	other	28	513	1898	1		90	
+1901	1	hathi	52	683	1898	1		90	
+1901	2					1			
+1902	1					1			
+1902	2					1			
+1903	1	hathi	41	844	1898	1		90	
+1803	1	hathi	1	2	1898	1		0	
+1903	2					1			
+1904	1					1			
+1904	2					1			
+1905	1					1			
+1905	2	google	55	1011	1898	1		90	
+1906	1					1			
+1906	2	google	47	1017	1898	1		90	
+1907	1	fraser	2	8	1898	1	folder	0	
+1907	2					1			
+1908	1					1			
+1908	2					1			
+1909	1	fraser	2	8	1898	1	folder	0	
+1909	2	google	36	1063	1898	1		90	
+1910	1	fraser	2	8	1910	1	folder	0	
+1910	2	google	50	1159	1910	1		90	
+1911	1	google	41	1261	1911	1		90	
+1911	2	hathi	46	1359	1911	1		90	
+1912	1				1911	1			
+1912	2	google	46	1689	1911	1		90	
+1913	1	google	52	1463	1911	1		90	
+1913	2	google	46	1453	1911	1		90	
+1914	1	other	48	1447	1911	1		90	bad quality
+1914	2	google	52	1489	1911	1		90	
+1915	1	google	52	1539	1911	1		90	
+1915	2	fraser	2	8	1911	1	folder	0	doesnt have fed membership
+1916	1	google	45	1496	1911	1		90	doesnt have fed membership
+1916	2	hathi	48	1585	1911	1		90	doesnt have fed membership; hathi seems better
+1917	1	hathi	44	1613	1911	1		90	doesnt have fed membership; requested another version from google books; current ones kinda suck
+1917	2	fraser	2	12	1911	1	folder	0	doesnt have fed membership
+1918	1	fraser	2	8	1911	1	folder	0	doesnt have fed membership
+1918	2	fraser	2	8	1911	1	folder	0	doesnt have fed membership
+1919	1	fraser	2	8	1911	1	folder	0	
+1919	2	fraser	2	9	1911	1	folder	0	
+1920	1	fraser	2	8	1911	1	folder	0	
+1920	2	fraser	2	8	1911	1	folder	0	
+1921	1	fraser	2	8	1911	1	folder	0	
+1921	2	fraser	2	8	1911	1	folder	0	
+1922	1	fraser	2	8	1911	1	folder	0	
+1922	2	fraser	2	8	1911	1	folder	0	
+1923	1	fraser	2	8	1911	1	folder	0	
+1923	2	fraser	2	8	1911	1	folder	0	
+1924	1	fraser	2	8	1911	1	folder	0	
+1924	2	fraser	2	8	1911	1	folder	0	
+1925	1	fraser	2	8	1911	1	folder	0	
+1925	2	fraser	2	7	1911	1	folder	0	
+1926	1	fraser	2	8	1911	1	folder	0	
+1926	2	fraser	2	7	1911	1	folder	0	
+1927	1	fraser	2	8	1911	1	folder	0	
+1927	2	fraser	2	8	1911	1	folder	0	
+1928	1	fraser	2	8	1911	1	folder	0	
+1928	2	fraser	2	8	1911	1	folder	0	
+1929	1	fraser	2	8	1911	1	folder	0	
+1929	2	fraser	2	8	1911	1	folder	0	
+1930	1	fraser	2	8	1911	1	folder	0	
+1930	2	fraser	2	8	1911	1	folder	0	
+1931	1	fraser	2	8	1911	1	folder	0	
+1931	2	fraser	2	8	1911	1	folder	0	
+1932	1	fraser	2	8	1911	1	folder	0	
+1932	2	fraser	2	8	1911	1	folder	0	
+1933	1	fraser	2	8	1911	1	folder	0	
+1933	2	fraser	2	8	1911	1	folder	0	
+1934	1	fraser	2	8	1934	1000	folder	0	Now 11 cols instead of 8; and in thousands; col3 might be cons with col2; just use a new prompt+schema
+1934	2	fraser	2	8	1934	1000	folder	0	
+1935	1	fraser	2	8	1934	1000	folder	0	
+1935	2	fraser	2	8	1934	1000	folder	0	
+1936	1	fraser	2	8	1934	1000	folder	0	
+1936	2	fraser	2	8	1934	1000	folder	0	
+1937	1	fraser	2	7	1934	1000	folder	0	
+1937	2	fraser	2	7	1934	1000	folder	0	
+1938	1	fraser	2	8	1934	1000	folder	0	
+1938	2	fraser	2	7	1934	1000	folder	0	
+1939	1	fraser	2	8	1934	1000	folder	0	
+1939	2	fraser	2	7	1934	1000	folder	0	
+1940	1	fraser	2	8	1934	1000	folder	0	
+1940	2	fraser	2	8	1934	1000	folder	0	
+1941	1	fraser	3	9	1934	1000	folder	0	
+1941	2	fraser	3	9	1934	1000	folder	0	
+1942	1	fraser	2	8	1934	1000	folder	0	
+1942	2	fraser	2	8	1934	1000	folder	0	

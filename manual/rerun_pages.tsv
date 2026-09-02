@@ -1,0 +1,3 @@
+page_id	source_id	year	edition	physical_page	reason	status	run_id	contract_signature	completed_at
+1881-1-hathi.pdf#page=84	rand_mcnally_1881_1_hathi	1881	1	84	Clear page for bounded migration smoke test	completed	20260902T055210.158908Z	e80439dcfb90c69e45950cffb72125e01ece1d0b7d74055349f087d7ca2db55d	2026-09-02T05:56:46.274037+00:00
+1881-1-hathi.pdf#page=143	rand_mcnally_1881_1_hathi	1881	1	143	Dense and faint page requiring the inspected JPX raster fallback	completed	20260902T055210.158908Z	db78b37fe9e27e310993d81efd3817896ad3896806156c0a5f643905dbaec723	2026-09-02T05:56:46.274037+00:00
