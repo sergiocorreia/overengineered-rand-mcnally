@@ -1,3 +1,5 @@
+(DO NOT USE; DO NOT READ; BLEACH YOUR EYES IF SO)
+
 # Rand McNally Bankers' Directory OCR Revision
 
 This is the single authoritative runbook for recovering the legacy evidence, ranking pages for review, and running the bounded 100-page OCR trial. Recovery, evidence preparation, and calibration are complete. The paid trial is **paused after a failed 10-page provider ramp**; its remaining 90 pages have not been sent.
