@@ -18,6 +18,8 @@ from typing import Any
 
 from qc_core import FLAG_FIELDS, adjudicate_flags, content_hash, file_hash, load_config, parse_decisions, release_status, run_checks
 
+from histdata_pipeline.config import load_project_config
+
 
 def read_tsv(path: Path, *, optional: bool = False) -> list[dict[str, str]]:
     if optional and not path.exists():
@@ -309,6 +311,8 @@ def build_source_support(
 
 
 def run(root: Path, input_path: Path, decisions_path: Path, output_directory: Path) -> tuple[str, list[str]]:
+    project_config = load_project_config(root, require_initialized=False)
+    output_directory = project_config.checked_write_path(output_directory)
     config = load_config(root / "project.toml")
     correction_receipt = verify_correction_receipt(root, output_directory)
     input_receipt = qc_input_receipt(

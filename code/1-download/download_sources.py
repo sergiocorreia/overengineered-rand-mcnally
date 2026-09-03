@@ -11,6 +11,8 @@ from pathlib import Path
 
 import acquisition
 
+from histdata_pipeline.config import ProjectConfig, load_project_config
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -34,16 +36,17 @@ def parser() -> argparse.ArgumentParser:
     return result
 
 
-def project_defaults() -> dict[str, object]:
+def project_defaults(project_root: Path | None = None) -> dict[str, object]:
     """Read storage and source defaults while keeping every CLI value overridable."""
 
-    config_path = PROJECT_ROOT / "project.toml"
+    root = project_root or PROJECT_ROOT
+    config_path = root / "project.toml"
     payload = tomllib.loads(config_path.read_text(encoding="utf-8")) if config_path.exists() else {}
     storage = payload.get("storage", {})
     source = payload.get("source", {})
     if not isinstance(storage, dict) or not isinstance(source, dict):
         raise ValueError("project.toml [storage] and [source] must be tables")
-    external_root = Path(str(storage.get("external_data_root", f"/home/sergio/data/{PROJECT_ROOT.name}"))).expanduser()
+    external_root = Path(str(storage.get("external_data_root", f"/home/sergio/data/{root.name}"))).expanduser()
     if not external_root.is_absolute():
         raise ValueError("storage.external_data_root must be absolute")
     external_root = external_root.resolve()
@@ -62,8 +65,8 @@ def project_defaults() -> dict[str, object]:
         local_pdf = Path(str(storage.get("local_pdf_directory", "sources/pdfs")))
         if local_pdf.is_absolute():
             raise ValueError("storage.local_pdf_directory must be project-relative")
-        pdf_root = (PROJECT_ROOT / local_pdf).resolve()
-        if not pdf_root.is_relative_to(PROJECT_ROOT.resolve()):
+        pdf_root = (root / local_pdf).resolve()
+        if not pdf_root.is_relative_to(root.resolve()):
             raise ValueError("storage.local_pdf_directory escapes the project root")
     elif pdf_mode == "external":
         pdf_root = external_child("external_pdf_subdirectory", "pdfs")
@@ -72,8 +75,8 @@ def project_defaults() -> dict[str, object]:
     inventory_relative = Path(str(source.get("inventory", "data/source_inventory.tsv")))
     if inventory_relative.is_absolute():
         raise ValueError("source.inventory must be project-relative")
-    inventory = (PROJECT_ROOT / inventory_relative).resolve()
-    if not inventory.is_relative_to(PROJECT_ROOT.resolve()):
+    inventory = (root / inventory_relative).resolve()
+    if not inventory.is_relative_to(root.resolve()):
         raise ValueError("source.inventory escapes the project root")
     return {
         "external_root": external_root,
@@ -85,19 +88,15 @@ def project_defaults() -> dict[str, object]:
     }
 
 
-def main(argv: list[str] | None = None) -> int:
-    args = parser().parse_args(argv)
-    defaults = project_defaults()
-    records = acquisition.load_sources(args.manifest)
-    all_sources = args.all or (args.inventory_only and args.limit is None and not args.source_id)
-    selected = acquisition.select_sources(
-        records,
-        all_sources=all_sources,
-        limit=args.limit or int(defaults["limit"]),
-        source_ids=args.source_id,
-    )
-    external_data_root = args.external_data_root or cast_path(defaults["external_root"])
-    requested_pdf_root = args.pdf_root or cast_path(defaults["pdf_root"])
+def validated_write_destinations(
+    args: argparse.Namespace,
+    config: ProjectConfig,
+    defaults: dict[str, object],
+) -> tuple[Path, Path, Path, Path]:
+    """Resolve every download destination before a caller performs any side effect."""
+
+    external_data_root = config.checked_write_path(args.external_data_root or cast_path(defaults["external_root"]))
+    requested_pdf_root = config.checked_write_path(args.pdf_root or cast_path(defaults["pdf_root"]))
     external_pdf_subdirectory = Path(str(defaults["external_pdf_subdirectory"]))
     if external_pdf_subdirectory.is_absolute():
         raise ValueError("storage.external_pdf_subdirectory must be relative to external_data_root")
@@ -106,12 +105,28 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("storage.external_pdf_subdirectory escapes external_data_root")
     pdf_root = acquisition.validate_pdf_root(
         requested_pdf_root,
-        project_root=PROJECT_ROOT,
+        project_root=config.root,
         external_data_root=external_data_root,
         external_pdf_root=external_pdf_root,
     )
-    inventory_path = args.inventory or cast_path(defaults["inventory"])
-    run_root = args.run_root or cast_path(defaults["run_root"])
+    inventory_path = config.checked_write_path(args.inventory or cast_path(defaults["inventory"]))
+    run_root = config.checked_write_path(args.run_root or cast_path(defaults["run_root"]))
+    return external_data_root, pdf_root, inventory_path, run_root
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parser().parse_args(argv)
+    config = load_project_config(PROJECT_ROOT)
+    defaults = project_defaults(config.root)
+    records = acquisition.load_sources(args.manifest)
+    all_sources = args.all or (args.inventory_only and args.limit is None and not args.source_id)
+    selected = acquisition.select_sources(
+        records,
+        all_sources=all_sources,
+        limit=args.limit or int(defaults["limit"]),
+        source_ids=args.source_id,
+    )
+    _, pdf_root, inventory_path, run_root = validated_write_destinations(args, config, defaults)
 
     print(f"Manifest records: {len(records)}; selected: {len(selected)}")
     print(f"PDF root: {pdf_root}")

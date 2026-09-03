@@ -60,6 +60,36 @@ def setup_store(tmp_path: Path) -> tuple[page_review.PageReviewStore, Path, str]
     return store, overrides, digest
 
 
+def write_project_config(project: Path, tmp_path: Path) -> None:
+    project.mkdir(parents=True, exist_ok=True)
+    (project / "project.toml").write_text(
+        f"""
+[template]
+initialized = true
+
+[project]
+slug = "test-project"
+
+[restoration]
+legacy_root = "{tmp_path / 'legacy'}"
+legacy_root_read_only = true
+recovered_v1_root = "{tmp_path / 'recovered-v1'}"
+recovered_v1_root_read_only = true
+
+[storage]
+external_data_root = "{tmp_path / 'external'}"
+pdf_storage = "external"
+external_pdf_subdirectory = "pdfs"
+page_review_image_subdirectory = "review-images"
+
+[review]
+port_pages = 0
+""".strip()
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def test_save_is_atomic_ordered_and_hash_pinned(tmp_path: Path) -> None:
     store, overrides, digest = setup_store(tmp_path)
     store.save("pdfs/source.pdf#page=2", "excluded", "Not a target")
@@ -144,3 +174,24 @@ port_pages = 9123
     parser = review_pages._parser(pdf_root, image_root, port)
     assert parser.parse_args([]).port == 9123
     assert parser.parse_args(["--port", "9456"]).port == 9456
+
+
+@pytest.mark.parametrize("option", ["--page-overrides", "--image-root"])
+@pytest.mark.parametrize("unsafe_name", ["legacy", "recovered-v1", "outside"])
+def test_page_reviewer_checks_write_destinations_before_server_creation(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    option: str,
+    unsafe_name: str,
+) -> None:
+    project = tmp_path / "project"
+    write_project_config(project, tmp_path)
+    candidate = tmp_path / unsafe_name / ("overrides.tsv" if option == "--page-overrides" else "images")
+    monkeypatch.setattr(review_pages, "PROJECT_ROOT", project)
+    monkeypatch.setattr(review_pages, "create_server", lambda *_args: pytest.fail("Path validation must precede server creation"))
+
+    with pytest.raises(SystemExit) as error:
+        review_pages.main([option, str(candidate), "--no-browser"])
+
+    assert error.value.code == 2
+    assert not candidate.exists()

@@ -6,13 +6,14 @@ import csv
 import json
 import os
 import tempfile
-import tomllib
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
 from qc_core import canonical_json, content_hash, file_hash
 from run_quality_control import baseline_extraction_path, qc_input_receipt, verify_correction_receipt
+
+from histdata_pipeline.config import load_project_config
 
 REPORT_NAMES = (
     "flags.tsv",
@@ -44,8 +45,10 @@ def read_release_gate(path: Path) -> dict[str, str]:
 
 
 def build_payload(root: Path) -> tuple[dict[str, Any], Path]:
+    project_config = load_project_config(root, require_initialized=False)
+    root = project_config.root
     config_path = root / "project.toml"
-    raw = tomllib.loads(config_path.read_text(encoding="utf-8"))
+    raw = project_config.values
     project = raw.get("project", {})
     quality = raw.get("quality", {})
     slug = str(project.get("slug", project.get("name", root.name)))
@@ -53,6 +56,8 @@ def build_payload(root: Path) -> tuple[dict[str, Any], Path]:
     decisions_path = resolve_path(root, quality.get("decisions_tsv"), "manual/qc_decisions.tsv")
     corrections_path = resolve_path(root, quality.get("corrections_tsv"), "manual/record_corrections.tsv")
     output_directory = resolve_path(root, quality.get("output_directory"), "output/quality-control")
+    manifest_path = (output_directory / "release_manifest.json").expanduser().absolute()
+    project_config.checked_write_path(manifest_path)
     gate = read_release_gate(output_directory / "release_gate.tsv")
     correction_receipt = verify_correction_receipt(root, output_directory)
     current_qc_inputs = qc_input_receipt(
@@ -111,7 +116,7 @@ def build_payload(root: Path) -> tuple[dict[str, Any], Path]:
         "artifacts": artifacts,
     }
     body["manifest_signature"] = content_hash(body)
-    return body, output_directory / "release_manifest.json"
+    return body, manifest_path
 
 
 def write_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:

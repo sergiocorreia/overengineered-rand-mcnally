@@ -7,11 +7,12 @@ import json
 import math
 import os
 import tempfile
-import tomllib
 from collections.abc import Iterable, Mapping
 from hashlib import sha256
 from pathlib import Path
 from typing import Any
+
+from histdata_pipeline.config import load_project_config
 
 
 def canonical_json(value: Any) -> str:
@@ -169,7 +170,11 @@ def main() -> None:
         parser.error("--write-plan and --output must be supplied together")
 
     root = arguments.root.resolve()
-    raw = tomllib.loads((root / "project.toml").read_text(encoding="utf-8"))
+    config = load_project_config(root, require_initialized=False)
+    raw = config.values
+    output_path = arguments.output.expanduser().absolute() if arguments.output is not None else None
+    if output_path is not None:
+        config.checked_write_path(output_path)
     project = raw.get("project", {})
     quality = raw.get("quality", {})
     alternate = raw.get("alternate_extraction", {})
@@ -216,8 +221,9 @@ def main() -> None:
     )
     print(json.dumps(plan, ensure_ascii=False, indent=2, sort_keys=True))
     if arguments.write_plan:
-        write_json_atomic(arguments.output.resolve(), plan)
-        print(f"Wrote candidate-only alternate plan {arguments.output.resolve()}")
+        assert output_path is not None
+        write_json_atomic(output_path, plan)
+        print(f"Wrote candidate-only alternate plan {output_path}")
     else:
         print("Dry run only: no metadata was written and no model request was made.")
 

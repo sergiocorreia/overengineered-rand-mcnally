@@ -10,6 +10,8 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
+from histdata_pipeline.config import ProjectConfig
+
 STATA_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_]{0,31}$")
 
 
@@ -41,8 +43,20 @@ def validate_names(names: list[str], label: str) -> None:
         raise ValueError(f"{label} contains invalid Stata names: {', '.join(invalid)}")
 
 
+def required_absolute_path(table: Mapping[str, Any], setting: str, label: str) -> Path:
+    configured = table.get(setting)
+    if configured is None or not str(configured).strip():
+        raise ValueError(f"{label} is required and must be absolute")
+    candidate = Path(str(configured)).expanduser()
+    if not candidate.is_absolute():
+        raise ValueError(f"{label} must be absolute")
+    return candidate.resolve()
+
+
 def build_globals(root: Path, raw: Mapping[str, Any]) -> dict[str, Any]:
+    config = ProjectConfig(root=root.resolve(), values=dict(raw))
     project = raw.get("project", {})
+    restoration = raw.get("restoration", {})
     storage = raw.get("storage", {})
     extraction = raw.get("extraction", {})
     dataset = raw.get("dataset", {})
@@ -52,21 +66,21 @@ def build_globals(root: Path, raw: Mapping[str, Any]) -> dict[str, Any]:
     banknorm = standardization.get("banknorm", {}) if isinstance(standardization, Mapping) else {}
 
     slug = str(project.get("slug", project.get("name", root.name)))
-    external_configured = Path(
-        str(storage.get("external_data_root", storage.get("external_root", Path("/home/sergio/data") / slug)))
-    ).expanduser()
-    if not external_configured.is_absolute():
-        raise ValueError("storage.external_data_root must be absolute")
-    external_root = external_configured.resolve()
+    if not isinstance(restoration, Mapping):
+        raise ValueError("restoration must be a table")
+    if not isinstance(storage, Mapping):
+        raise ValueError("storage must be a table")
+    required_absolute_path(storage, "external_data_root", "storage.external_data_root")
+    legacy_root = required_absolute_path(restoration, "legacy_root", "restoration.legacy_root")
+    required_absolute_path(
+        restoration,
+        "recovered_v1_root",
+        "restoration.recovered_v1_root",
+    )
+    external_root = config.external_root
 
     def external_child(setting: str, default: str) -> Path:
-        configured = Path(str(storage.get(setting, default))).expanduser()
-        if configured.is_absolute():
-            raise ValueError(f"storage.{setting} must be relative to external_data_root")
-        result = (external_root / configured).resolve()
-        if not result.is_relative_to(external_root):
-            raise ValueError(f"storage.{setting} escapes external_data_root")
-        return result
+        return config.checked_write_path(config.external_path(setting, default))
 
     extraction_configured = extraction.get("current_tsv", "data-extraction/exports/current/flat.tsv")
     extraction_candidate = Path(str(extraction_configured)).expanduser()
@@ -77,8 +91,12 @@ def build_globals(root: Path, raw: Mapping[str, Any]) -> dict[str, Any]:
         raise ValueError("extraction.current_tsv escapes storage.external_data_root")
     banknorm_cache = external_child("banknorm_cache_subdirectory", "banknorm-cache")
     corrections_tsv = resolve_path(root, quality.get("corrections_tsv"), root / "manual/record_corrections.tsv")
-    qc_output = resolve_path(root, quality.get("output_directory"), root / "output/quality-control")
-    standardization_temp = root / "temp/4-standardization"
+    qc_output = config.checked_write_path(resolve_path(root, quality.get("output_directory"), root / "output/quality-control"))
+    standardization_temp = config.checked_write_path(root / "temp/4-standardization")
+    standardization_output = config.checked_write_path(root / "output/4-standardization")
+    reconciliation_output = config.checked_write_path(root / "output/5-reconciliation")
+    exploration_output = config.checked_write_path(root / "output/6-exploration")
+    review_priority_external = config.checked_write_path(external_root / "review-prioritization")
 
     keys = strings(dataset.get("keys"))
     entity_keys = strings(dataset.get("entity_keys"))
@@ -114,22 +132,25 @@ def build_globals(root: Path, raw: Mapping[str, Any]) -> dict[str, Any]:
         "source_page_field": page_id,
         "provenance_fields": " ".join(provenance),
         "external_data": external_root,
+        "legacy_root": legacy_root,
+        "legacy_data": legacy_root / "data",
+        "review_priority_external": review_priority_external,
         "banknorm_cache": banknorm_cache,
         "extraction_flat_tsv": extraction_input,
         "corrections_tsv": corrections_tsv,
         "standardization_temp": standardization_temp,
-        "standardization_output": root / "output/4-standardization",
-        "reconciliation_output": root / "output/5-reconciliation",
-        "exploration_output": root / "output/6-exploration",
-        "reviewed_extraction_tsv": standardization_temp / "reviewed-extraction.tsv",
-        "record_review_diff_tsv": qc_output / "record-review-differences.tsv",
-        "record_review_flags_tsv": qc_output / "record-review-blocking.tsv",
-        "corrected_extraction_tsv": standardization_temp / "corrected-extraction.tsv",
-        "correction_diff_tsv": qc_output / "correction-differences.tsv",
-        "standardized_dta": standardization_temp / "standardized.dta",
-        "standardized_tsv": standardization_temp / "standardized.tsv",
-        "final_dta": root / f"data/{slug}.dta",
-        "final_tsv": root / f"data/{slug}.tsv",
+        "standardization_output": standardization_output,
+        "reconciliation_output": reconciliation_output,
+        "exploration_output": exploration_output,
+        "reviewed_extraction_tsv": config.checked_write_path(standardization_temp / "reviewed-extraction.tsv"),
+        "record_review_diff_tsv": config.checked_write_path(qc_output / "record-review-differences.tsv"),
+        "record_review_flags_tsv": config.checked_write_path(qc_output / "record-review-blocking.tsv"),
+        "corrected_extraction_tsv": config.checked_write_path(standardization_temp / "corrected-extraction.tsv"),
+        "correction_diff_tsv": config.checked_write_path(qc_output / "correction-differences.tsv"),
+        "standardized_dta": config.checked_write_path(standardization_temp / "standardized.dta"),
+        "standardized_tsv": config.checked_write_path(standardization_temp / "standardized.tsv"),
+        "final_dta": config.checked_write_path(root / f"data/{slug}.dta"),
+        "final_tsv": config.checked_write_path(root / f"data/{slug}.tsv"),
         "qc_output": qc_output,
         "repeated_vintages": 1 if reconciliation.get("repeated_vintages", False) else 0,
         "source_priority_field": str(reconciliation.get("source_priority_field", "source_priority")),
@@ -162,6 +183,17 @@ def write_atomic(path: Path, text: str) -> None:
         raise
 
 
+def export_stata_config(root: Path, raw: Mapping[str, Any], output: Path) -> None:
+    """Validate every configured write path before publishing the include file."""
+
+    globals_ = build_globals(root, raw)
+    config = ProjectConfig(root=root.resolve(), values=dict(raw))
+    checked_output = config.checked_write_path(output)
+    lines = ["* Generated from project.toml. Do not edit; regenerate via common.do."]
+    lines.extend(f"global {name} {stata_quote(value)}" for name, value in globals_.items())
+    write_atomic(checked_output, "\n".join(lines) + "\n")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
@@ -169,10 +201,7 @@ def main() -> None:
     arguments = parser.parse_args()
     root = arguments.root.resolve()
     raw = tomllib.loads((root / "project.toml").read_text(encoding="utf-8"))
-    globals_ = build_globals(root, raw)
-    lines = ["* Generated from project.toml. Do not edit; regenerate via common.do."]
-    lines.extend(f"global {name} {stata_quote(value)}" for name, value in globals_.items())
-    write_atomic(arguments.output.resolve(), "\n".join(lines) + "\n")
+    export_stata_config(root, raw, arguments.output)
 
 
 if __name__ == "__main__":

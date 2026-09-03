@@ -5,11 +5,12 @@ import argparse
 import json
 import os
 import tempfile
-import tomllib
 from collections.abc import Iterable, Mapping
 from hashlib import sha256
 from pathlib import Path
 from typing import Any
+
+from histdata_pipeline.config import load_project_config
 
 
 def canonical_json(value: Any) -> str:
@@ -176,29 +177,35 @@ def write_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:
         raise
 
 
-def validate_candidate_destination(root: Path, output: Path) -> None:
-    """Keep standalone candidate merges away from final/manual/current paths."""
+def validate_candidate_destinations(root: Path, *outputs: Path) -> tuple[Path, ...]:
+    """Confine all candidate merge outputs away from final/manual/current paths."""
 
-    root = root.resolve()
-    destination = output.expanduser().resolve()
-    protected_directories = (root / "data", root / "manual")
-    if any(destination.is_relative_to(directory.resolve()) for directory in protected_directories):
+    config = load_project_config(root.resolve(), require_initialized=False)
+    destinations = tuple(output.expanduser().absolute() for output in outputs)
+    resolved_destinations = tuple(config.checked_write_path(output) for output in destinations)
+    protected_directories = (config.root / "data", config.root / "manual")
+    if any(
+        destination.is_relative_to(directory.resolve())
+        for destination in resolved_destinations
+        for directory in protected_directories
+    ):
         raise ValueError("candidate merge output may not be written beneath data/ or manual/")
-    config_path = root / "project.toml"
-    if not config_path.is_file():
-        raise FileNotFoundError(config_path)
-    raw = tomllib.loads(config_path.read_text(encoding="utf-8"))
-    storage = raw.get("storage", {})
-    extraction = raw.get("extraction", {})
-    external_root = Path(str(storage.get("external_data_root", ""))).expanduser()
-    if not external_root.is_absolute():
-        raise ValueError("storage.external_data_root must be absolute")
-    current = Path(str(extraction.get("current_tsv", "data-extraction/exports/current/flat.tsv")))
+    current = Path(str(config.table("extraction").get("current_tsv", "data-extraction/exports/current/flat.tsv")))
     if current.is_absolute():
         raise ValueError("extraction.current_tsv must be external-root-relative")
-    current_path = (external_root.resolve() / current).resolve()
-    if destination == current_path or destination.is_relative_to(current_path.parent):
+    current_path = (config.external_root / current).resolve()
+    if any(
+        destination == current_path or destination.is_relative_to(current_path.parent)
+        for destination in resolved_destinations
+    ):
         raise ValueError("candidate merge output may not touch the baseline current extraction")
+    return destinations
+
+
+def validate_candidate_destination(root: Path, output: Path) -> Path:
+    """Backward-compatible singular destination validation."""
+
+    return validate_candidate_destinations(root, output)[0]
 
 
 def main() -> None:
@@ -210,7 +217,12 @@ def main() -> None:
     parser.add_argument("--metadata", type=Path, required=True, help="Candidate-only merge metadata")
     parser.add_argument("--plan", type=Path, required=True, help="Reviewed alternate plan defining every expected segment")
     arguments = parser.parse_args()
-    validate_candidate_destination(arguments.root, arguments.output)
+    output_path, conflicts_path, metadata_path = validate_candidate_destinations(
+        arguments.root,
+        arguments.output,
+        arguments.conflicts,
+        arguments.metadata,
+    )
 
     input_bytes = arguments.input.read_bytes()
     plan = json.loads(arguments.plan.read_text(encoding="utf-8"))
@@ -227,7 +239,7 @@ def main() -> None:
         raise ValueError("--plan must be a segmented candidate plan with a uniform positive request count")
     expected = {page_id: requests // len(page_ids) for page_id in page_ids}
     merged, conflicts = merge_segments(read_jsonl(arguments.input), expected_segment_counts=expected)
-    write_jsonl_atomic(arguments.conflicts, conflicts)
+    write_jsonl_atomic(conflicts_path, conflicts)
     metadata = {
         "schema_version": 1,
         "candidate_only": True,
@@ -238,11 +250,11 @@ def main() -> None:
         "conflict_count": len(conflicts),
         "merge_status": "blocked" if conflicts else "candidate_ready_for_human_review",
     }
-    write_json_atomic(arguments.metadata, metadata)
+    write_json_atomic(metadata_path, metadata)
     if conflicts:
-        arguments.output.unlink(missing_ok=True)
+        output_path.unlink(missing_ok=True)
         raise SystemExit(f"Segment merge blocked by {len(conflicts)} overlap conflict(s).")
-    write_jsonl_atomic(arguments.output, merged)
+    write_jsonl_atomic(output_path, merged)
     print(f"Wrote {len(merged)} candidate records. No result was promoted.")
 
 

@@ -27,6 +27,37 @@ def html(payload: object, declaration: str = "var") -> str:
     return f"<script>{declaration} browseByData = {json.dumps(payload)}; var browse = 'all';</script>"
 
 
+def write_project_config(project: Path, tmp_path: Path) -> None:
+    project.mkdir(parents=True, exist_ok=True)
+    (project / "project.toml").write_text(
+        f"""
+[template]
+initialized = true
+
+[project]
+slug = "test-project"
+
+[restoration]
+legacy_root = "{tmp_path / 'legacy'}"
+legacy_root_read_only = true
+recovered_v1_root = "{tmp_path / 'recovered-v1'}"
+recovered_v1_root_read_only = true
+
+[storage]
+external_data_root = "{tmp_path / 'external'}"
+
+[source]
+manifest = "sources/source_manifest.tsv"
+sample_size = 1
+
+[fraser]
+title_slug = "example-123"
+""".strip()
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 @pytest.mark.parametrize(
     "payload",
     [
@@ -130,3 +161,57 @@ def test_fraser_date_window_uses_catalog_decade_then_exact_mods_date() -> None:
     assert not fraser_adapter.catalog_in_date_window(item, date(1940, 1, 1), None)
     assert fraser_adapter.metadata_in_date_window(metadata, date(1930, 1, 1), date(1930, 1, 1))
     assert not fraser_adapter.metadata_in_date_window(metadata, date(1930, 1, 2), None)
+
+
+@pytest.mark.parametrize("option", ["--metadata-jsonl", "--output-manifest"])
+@pytest.mark.parametrize("unsafe_name", ["legacy", "recovered-v1", "outside"])
+def test_fraser_write_destinations_are_checked_before_network(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    option: str,
+    unsafe_name: str,
+) -> None:
+    project = tmp_path / "project"
+    write_project_config(project, tmp_path)
+    candidate = tmp_path / unsafe_name / ("items.jsonl" if option == "--metadata-jsonl" else "manifest.tsv")
+    monkeypatch.setattr(fraser_adapter, "PROJECT_ROOT", project)
+    monkeypatch.setattr(acquisition, "build_session", lambda: pytest.fail("Path validation must precede network setup"))
+
+    with pytest.raises(ValueError, match="overlaps immutable restoration|outside the V2"):
+        fraser_adapter.main([option, str(candidate)])
+
+    assert not candidate.exists()
+
+
+def test_fraser_download_destinations_are_checked_before_catalog_request(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    project = tmp_path / "project"
+    write_project_config(project, tmp_path)
+    config_path = project / "project.toml"
+    config_path.write_text(
+        config_path.read_text(encoding="utf-8").replace(
+            f'external_data_root = "{tmp_path / "external"}"',
+            f'external_data_root = "{tmp_path / "legacy"}"',
+        ),
+        encoding="utf-8",
+    )
+    metadata = project / "temp" / "fraser_items.jsonl"
+    manifest = project / "sources" / "source_manifest.tsv"
+    monkeypatch.setattr(fraser_adapter, "PROJECT_ROOT", project)
+    monkeypatch.setattr(acquisition, "build_session", lambda: pytest.fail("Download preflight must precede the catalog request"))
+
+    with pytest.raises(ValueError, match="overlaps immutable restoration.legacy_root"):
+        fraser_adapter.main(
+            [
+                "--download",
+                "--metadata-jsonl",
+                str(metadata),
+                "--output-manifest",
+                str(manifest),
+            ]
+        )
+
+    assert not metadata.exists()
+    assert not manifest.exists()

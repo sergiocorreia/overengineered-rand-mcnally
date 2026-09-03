@@ -232,11 +232,15 @@ def write_run(
 def publish_current(config: ProjectConfig, run_directory: Path, contract_signature: str) -> None:
     """Atomically move the canonical current pointer to a complete full run."""
     export_root = run_directory.parent
-    temporary = export_root / f".current-{os.getpid()}-{secrets.token_hex(2)}"
+    temporary = (export_root / f".current-{os.getpid()}-{secrets.token_hex(2)}").absolute()
+    current = (export_root / "current").absolute()
+    pointer = (config.root / "data" / "extraction_current.json").absolute()
+    for destination in (temporary, current, pointer):
+        config.checked_write_path(destination)
     temporary.symlink_to(run_directory.name, target_is_directory=True)
-    temporary.replace(export_root / "current")
+    temporary.replace(current)
     atomic_write_json(
-        config.root / "data" / "extraction_current.json",
+        pointer,
         {
             "run_directory": str(run_directory),
             "flat_tsv": str(run_directory / "flat.tsv"),

@@ -10,6 +10,8 @@ description = "Audit and selectively re-extract problematic pages from the Rand 
 legacy_root = "/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally"
 legacy_root_read_only = true
 legacy_reference_root = "/home/sergio/data/rand-mcnally-v2/legacy-reference"
+recovered_v1_root = "/home/sergio/data/rand-mcnally-v1"
+recovered_v1_root_read_only = true
 smoke_source_id = "rand_mcnally_1881_1_hathi"
 smoke_year = 1881
 smoke_edition = 1
@@ -32,6 +34,7 @@ cache_subdirectory = "data-extraction/cache"
 export_subdirectory = "data-extraction/exports"
 alternate_export_subdirectory = "data-extraction/alternate-exports"
 banknorm_cache_subdirectory = "banknorm-cache"
+review_priority_subdirectory = "review-prioritization"
 
 [dataset]
 shape = "panel"
@@ -78,6 +81,40 @@ embedded_text_min_characters = 80
 locro_target_window = 2
 require_complete_review = true
 
+[review_prioritization]
+pipeline_version = "0.1.0"
+legacy_inputs_subdirectory = "review-prioritization/legacy-inputs"
+generated_output_subdirectory = "review-prioritization/generated"
+known_evidence = "manual/legacy_page_evidence.tsv"
+scope_exclusions = "manual/legacy_scope_exclusions.tsv"
+calibration_decisions = "manual/page_review_calibration.tsv"
+selection_tsv = "output/rerun-ranking/selected_pages.tsv"
+selection_receipt = "output/rerun-ranking/ranking_receipt.json"
+paid_ledger = "manual/rerun_pages.tsv"
+calibration_pages = 150
+calibration_documented = 50
+calibration_candidates = 50
+calibration_controls = 50
+minimum_candidate_reviews = 20
+minimum_observed_precision = 0.70
+minimum_wilson_lower_95 = 0.50
+capital_secondary_factor = 2.0
+capital_strong_factor = 10.0
+gap_minimum_support_ratio = 0.80
+gap_strong_weight = 5.0
+gap_corroborated_weight = 3.0
+density_neighbor_minimum = 10.0
+density_ratio = 0.25
+identity_cluster_minimum = 5
+identity_cluster_share = 0.10
+accounting_minimum_year = 1934
+accounting_error_share = 0.01
+accounting_cluster_minimum = 3
+trial_max_pages = 100
+trial_ramp_pages = 10
+trial_ramp_workers = 10
+trial_workers = 50
+
 [extraction]
 pipeline_version = "0.1.0"
 selected_pages = "data/selected_pages.tsv"
@@ -115,10 +152,11 @@ port_pages = 8765
 port_records = 8766
 
 [pricing]
-as_of = ""
-input_per_million = 0.0
-output_per_million = 0.0
-thinking_per_million = 0.0
+as_of = "2026-09-02"
+source_url = "https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing"
+input_per_million = 0.375
+output_per_million = 1.875
+thinking_per_million = 1.875
 review_max_age_hours = 24
 
 [standardization]

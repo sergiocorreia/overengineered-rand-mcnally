@@ -90,6 +90,18 @@ def _read_page_ids(path: Path) -> list[str]:
         return [str(row["page_id"]).strip() for row in reader if str(row.get("page_id", "")).strip()]
 
 
+def _validate_write_destinations(config: ProjectConfig) -> None:
+    """Reject every configured extraction write root before rendering or requests."""
+
+    for destination in (
+        config.external_path("render_subdirectory", "rendered-pages"),
+        config.external_path("cache_subdirectory", "data-extraction/cache"),
+        config.external_path("export_subdirectory", "data-extraction/exports"),
+        config.root / "data" / "extraction_current.json",
+    ):
+        config.checked_write_path(destination)
+
+
 def select_pages(config: ProjectConfig, pages: list[SelectedPage], args: argparse.Namespace) -> list[SelectedPage]:
     """Resolve exactly one declared selector while preserving manifest order."""
     if args.limit is not None:
@@ -350,6 +362,7 @@ def execute(args: argparse.Namespace) -> dict[str, Any]:
     if args.status:
         return {**summary, "mode": "status", **_status_report(config, contract, pages)}
 
+    _validate_write_destinations(config)
     prepared, structural_errors = _prepare_pages(config, contract, pages)
     pending = _pending_pages(
         pages,

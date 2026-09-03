@@ -17,6 +17,7 @@ from pipeline import (
 
 from histdata_pipeline.config import ProjectConfig
 from histdata_pipeline.provenance import stable_hash
+from histdata_pipeline.user_adc import require_user_adc
 
 TOKEN_FIELDS = ("input_tokens", "output_tokens", "thoughts_tokens", "total_tokens")
 
@@ -101,8 +102,6 @@ def extract_one(
     attempt_id: str,
 ) -> dict[str, Any]:
     """Make one model request and immediately publish its immutable envelope."""
-    from yachay import OCR
-
     model = config.table("model")
     extraction = config.table("extraction")
     cache_path = page_cache_path(
@@ -111,24 +110,29 @@ def extract_one(
         page=page,
         render_sha256=render_hash,
     )
+    project_id = str(model.get("project_id") or "").strip()
+    require_user_adc(project_id)
+
+    from yachay import OCR
+
+    client = OCR(
+        project_id=project_id,
+        model=str(model.get("name")),
+        location=str(model.get("location", "global")),
+        temperature=float(model.get("temperature", 0.2)),
+        max_output_tokens=int(model.get("max_output_tokens", 64_000)),
+        think_level=str(model.get("think_level", "medium")),
+        use_flex=service == "flex",
+        retry_errors=retry_errors,
+        raise_errors=True,
+        media_resolution=str(extraction.get("media_resolution", "ultra_high")),
+    )
     base = base_envelope(page, contract, render_hash, render_path)
     started_at = datetime.now(UTC)
     started_clock = time.perf_counter()
     provider_call_started = False
     result: Any | None = None
     try:
-        client = OCR(
-            project_id=str(model.get("project_id") or "") or None,
-            model=str(model.get("name")),
-            location=str(model.get("location", "global")),
-            temperature=float(model.get("temperature", 0.2)),
-            max_output_tokens=int(model.get("max_output_tokens", 64_000)),
-            think_level=str(model.get("think_level", "medium")),
-            use_flex=service == "flex",
-            retry_errors=retry_errors,
-            raise_errors=True,
-            media_resolution=str(extraction.get("media_resolution", "ultra_high")),
-        )
         provider_call_started = True
         result = client.extract(render_path, contract.prompt, contract.schema, name=page.cache_key, page=page.page)
         if result is None:

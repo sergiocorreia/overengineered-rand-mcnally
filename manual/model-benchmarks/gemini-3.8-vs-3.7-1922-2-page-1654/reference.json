@@ -1,0 +1,1177 @@
+{
+  "adjudicated_at": "2026-09-02T19:27:07.632353+00:00",
+  "benchmark_result_sha256": {
+    "gemini-3.7-flash": "e203642367cd0b085b3c0d21a1c32d0284765d69a5db3cc86e85483394fbfd27",
+    "gemini-3.8-flash": "502d66c389c7bdcb8a3ddec1db0e18df931689ea0a314b246053e2b536b7d3e6"
+  },
+  "benchmark_run_path": "/home/sergio/data/rand-mcnally-v2/model-benchmarks/20260902T192156.120141Z",
+  "created_at": "2026-09-02T19:19:44.735526+00:00",
+  "extraction": {
+    "banks": [
+      {
+        "assistant_cashier": null,
+        "bank_name": "Farmers & Miners Nat. Bank",
+        "bonds": null,
+        "capital": 50000.0,
+        "cash": 61360.0,
+        "cashier": "H. L. Bayless",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Irving N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "1st N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Irving N., N. Y.; 1st N., Phil.",
+        "county_name": "Susquehanna",
+        "deposits": 634180.0,
+        "established_year": 8,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 698350.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 44060.0,
+        "president": "H. P. Johns",
+        "state_abbreviation": "PA",
+        "surplus": 31470.0,
+        "town_name": "Forest City",
+        "town_pop": 6004,
+        "transit_number": "60-679",
+        "vice_president": "E. A. Bloxham; Martin Muchitz"
+      },
+      {
+        "assistant_cashier": null,
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 50000.0,
+        "cash": 144750.0,
+        "cashier": "James J. Walker",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Han. N.",
+            "state": null
+          },
+          {
+            "city": "New York",
+            "name": "Irving N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "4th St. N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Phil. N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Han. N. and Irving N., N. Y.; 4th St. N. and Phil. N., Phil.",
+        "county_name": "Susquehanna",
+        "deposits": 1395840.0,
+        "established_year": 1900,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 1444320.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 50050.0,
+        "president": "John Lynch",
+        "state_abbreviation": "PA",
+        "surplus": 93180.0,
+        "town_name": "Forest City",
+        "town_pop": 6004,
+        "transit_number": "60-678",
+        "vice_president": "T. P. McCormick; D. G. Allen"
+      },
+      {
+        "assistant_cashier": "F. L. Harvey",
+        "bank_name": "Foxburg Bank & Trust Co.",
+        "bonds": null,
+        "capital": 125000.0,
+        "cash": 70340.0,
+        "cashier": "M. R. Morgan; H. R. Harvey",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Chase N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Monongahela N.",
+            "state": null
+          },
+          {
+            "city": "Oil City",
+            "name": "Oil City Tr. Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Chase N., N. Y.; Monongahela N., Pitt.; Oil City Tr. Co., Oil City.",
+        "county_name": "Clarion",
+        "deposits": 465410.0,
+        "established_year": 81,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": true,
+        "loans": 554420.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "H. H. Porterfield",
+        "state_abbreviation": "PA",
+        "surplus": 37620.0,
+        "town_name": "Foxburg",
+        "town_pop": 1000,
+        "transit_number": "60-1161",
+        "vice_president": "W. L. Fox; L. C. Collner"
+      },
+      {
+        "assistant_cashier": "D. F. Hoppes",
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 60000.0,
+        "cash": 119990.0,
+        "cashier": "R. G. Garrett",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Irving N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Corn Ex. N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Irving N., N. Y.; Corn Ex. N., Phil.",
+        "county_name": "Schuylkill",
+        "deposits": 1112330.0,
+        "established_year": 5,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 1240120.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 95000.0,
+        "president": "J. C. McGinnis",
+        "state_abbreviation": "PA",
+        "surplus": 92780.0,
+        "town_name": "Frackville",
+        "town_pop": 5590,
+        "transit_number": "60-1162",
+        "vice_president": "J. K. Berk"
+      },
+      {
+        "assistant_cashier": null,
+        "bank_name": "Peoples Trust Co.",
+        "bonds": null,
+        "capital": 125000.0,
+        "cash": null,
+        "cashier": "G. N. Postlethwaite",
+        "ch_member": 0,
+        "correspondents": [],
+        "correspondents_raw": null,
+        "county_name": "Schuylkill",
+        "deposits": 300000.0,
+        "established_year": 21,
+        "event": null,
+        "event_date": null,
+        "is_aba": false,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": true,
+        "loans": null,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "J. G. Johnson",
+        "state_abbreviation": "PA",
+        "surplus": 30000.0,
+        "town_name": "Frackville",
+        "town_pop": 5590,
+        "transit_number": "60-1577",
+        "vice_president": "Walter Zetcusky; W. A. Nice"
+      },
+      {
+        "assistant_cashier": null,
+        "bank_name": "Exchange Bank",
+        "bonds": null,
+        "capital": 100000.0,
+        "cash": 356200.0,
+        "cashier": "E. K. Myers",
+        "ch_member": 1,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. Park",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Union N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. Park, N. Y.; Union N., Pitt.",
+        "county_name": "Venango",
+        "deposits": 2121230.0,
+        "established_year": 71,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": true,
+        "loans": 2334670.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 14040.0,
+        "president": "Daniel Grimm",
+        "state_abbreviation": "PA",
+        "surplus": 455610.0,
+        "town_name": "Franklin",
+        "town_pop": 9970,
+        "transit_number": "60-488",
+        "vice_president": "G. B. Woodburn"
+      },
+      {
+        "assistant_cashier": null,
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 200000.0,
+        "cash": 268430.0,
+        "cashier": "F. W. Officer",
+        "ch_member": 1,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. City",
+            "state": null
+          },
+          {
+            "city": "New York",
+            "name": "Chase N.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "1st N.",
+            "state": null
+          },
+          {
+            "city": "Cleveland",
+            "name": "Union Tr. Co.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Bk. of Pitt. N. A.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. City and Chase N., N. Y.; 1st N., Chi.; Union Tr. Co., Clev.; Bk. of Pitt. N. A., Pitt.",
+        "county_name": "Venango",
+        "deposits": 977210.0,
+        "established_year": 63,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 1370550.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 234280.0,
+        "president": "W. W. Bleakley",
+        "state_abbreviation": "PA",
+        "surplus": 227490.0,
+        "town_name": "Franklin",
+        "town_pop": 9970,
+        "transit_number": "60-487",
+        "vice_president": "J. F. Miller; C. Barnard"
+      },
+      {
+        "assistant_cashier": "W. E. ROSS; C. M. MILLER",
+        "bank_name": "FRANKLIN TRUST CO.",
+        "bonds": null,
+        "capital": 500000.0,
+        "cash": 333750.0,
+        "cashier": "R. R. BLEAKLEY; W. W. BLEAKLEY",
+        "ch_member": 1,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Seab. N.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "Cont. & Com'l N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Bk. of Pitt. N. A.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Seab. N., N. Y.; Cont. & Com'l N., Chi.; Bk. of Pitt. N. A., Pitt.",
+        "county_name": "Venango",
+        "deposits": 2764150.0,
+        "established_year": 1,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": true,
+        "loans": 3488060.0,
+        "misc_notes": "A thoroughly organized collection department. This bank endeavors to give prompt, faithful, and intelligent attention to all business received.",
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 243710.0,
+        "president": "O. D. BLEAKLEY",
+        "state_abbreviation": "PA",
+        "surplus": 313950.0,
+        "town_name": "Franklin",
+        "town_pop": 9970,
+        "transit_number": "60-489",
+        "vice_president": "H. C. CRAWFORD; R. R. BLEAKLEY"
+      },
+      {
+        "assistant_cashier": "JAMES A. CORRIN",
+        "bank_name": "LAMBERTON NAT'L BANK",
+        "bonds": null,
+        "capital": 125000.0,
+        "cash": 511470.0,
+        "cashier": "R. LAMBERTON",
+        "ch_member": 1,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. Park",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Far. Dep. N.",
+            "state": null
+          },
+          {
+            "city": "Cleveland",
+            "name": "Union Tr. Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. Park, N. Y.; Far. Dep. N., Pitt.; Union Tr. Co., Clev.",
+        "county_name": "Venango",
+        "deposits": 3038290.0,
+        "established_year": 60,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 3116760.0,
+        "misc_notes": "B-L DRAFTS SOLICITED. 15c must accompany all sight drafts for presentation and 50c for credit reports or ratings. We want your items only on this basis.",
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 128000.0,
+        "president": "HARRY LAMBERTON",
+        "state_abbreviation": "PA",
+        "surplus": 341950.0,
+        "town_name": "Franklin",
+        "town_pop": 9970,
+        "transit_number": "60-486",
+        "vice_president": "R. G. LAMBERTON; CHESS LAMBERTON"
+      },
+      {
+        "assistant_cashier": null,
+        "bank_name": "Franklin Clearing House",
+        "bonds": null,
+        "capital": null,
+        "cash": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Han. N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Girard N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Han. N., N. Y.; Girard N., Phil.",
+        "county_name": "Venango",
+        "deposits": null,
+        "established_year": null,
+        "event": null,
+        "event_date": null,
+        "is_aba": false,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": false,
+        "is_state": false,
+        "loans": null,
+        "misc_notes": "(Members indicated by a *)",
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": null,
+        "state_abbreviation": "PA",
+        "surplus": null,
+        "town_name": "Franklin",
+        "town_pop": 9970,
+        "transit_number": null,
+        "vice_president": null
+      },
+      {
+        "assistant_cashier": "Samuel A. Deck",
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 25000.0,
+        "cash": 36890.0,
+        "cashier": "Charles C. Bensing",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Han. N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Girard N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Han. N., N. Y.; Girard N., Phil.",
+        "county_name": "Lebanon",
+        "deposits": 346070.0,
+        "established_year": 7,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 389170.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 18530.0,
+        "president": "Jonathan Swope",
+        "state_abbreviation": "PA",
+        "surplus": 36470.0,
+        "town_name": "Fredericksburg",
+        "town_pop": 650,
+        "transit_number": "60-1163",
+        "vice_president": "L. S. Moyer"
+      },
+      {
+        "assistant_cashier": "W. B. Vandegrift",
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 25000.0,
+        "cash": 77620.0,
+        "cashier": "R. S. Bane",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. Park",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Duquesne N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Mellon N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. Park, N. Y.; Duquesne N. and Mellon N., Pitt.",
+        "county_name": "Washington",
+        "deposits": 723130.0,
+        "established_year": 1,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 720660.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "L. M. Crowthers",
+        "state_abbreviation": "PA",
+        "surplus": 66670.0,
+        "town_name": "Fredericktown",
+        "town_pop": 2000,
+        "transit_number": "60-1164",
+        "vice_president": "C. H. Day"
+      },
+      {
+        "assistant_cashier": "H. C. Hays",
+        "bank_name": "Fredonia National Bank",
+        "bonds": null,
+        "capital": 25000.0,
+        "cash": 50850.0,
+        "cashier": "C. W. Perrine",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. City",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Union N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. City, N. Y.; Union N., Pitt.",
+        "county_name": "Mercer",
+        "deposits": 353350.0,
+        "established_year": 4,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 382770.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 25000.0,
+        "president": "W. H. Moore",
+        "state_abbreviation": "PA",
+        "surplus": 30260.0,
+        "town_name": "Fredonia",
+        "town_pop": 422,
+        "transit_number": "60-1165",
+        "vice_president": "T. F. Hogue"
+      },
+      {
+        "assistant_cashier": null,
+        "bank_name": "Freeburg State Bank",
+        "bonds": null,
+        "capital": 25000.0,
+        "cash": 23080.0,
+        "cashier": "L. Harvey Smith",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Irving N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "1st N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Irving N., N. Y.; 1st N., Phil.",
+        "county_name": "Snyder",
+        "deposits": 214640.0,
+        "established_year": 12,
+        "event": null,
+        "event_date": null,
+        "is_aba": false,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": true,
+        "loans": 240130.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "Wm. Moyer",
+        "state_abbreviation": "PA",
+        "surplus": 23570.0,
+        "town_name": "Freeburg",
+        "town_pop": 450,
+        "transit_number": "60-1420",
+        "vice_president": "J. C. W. Bassler"
+      },
+      {
+        "assistant_cashier": "P. M. FLETCHER",
+        "bank_name": "FREEDOM NATIONAL BANK",
+        "bonds": null,
+        "capital": 100000.0,
+        "cash": 108960.0,
+        "cashier": "H. O. MENGEL",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. City",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Far. Dep. N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Union Tr. Co.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Phil. N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. City, N. Y.; Far. Dep. N. and Union Tr. Co., Pitt.; Phil. N., Phil.",
+        "county_name": "Beaver",
+        "deposits": 941500.0,
+        "established_year": 1900,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 1041000.0,
+        "misc_notes": "Special attention is given Bill of Lading drafts, Cash and Time Items. Send us your Freedom Items. Please send 15c with each sight draft for presentation and 50c for Credit Reports.",
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "E. J. SCHLEITER",
+        "state_abbreviation": "PA",
+        "surplus": 82100.0,
+        "town_name": "Freedom",
+        "town_pop": 3452,
+        "transit_number": "60-840",
+        "vice_president": "D. J. SNEAD"
+      },
+      {
+        "assistant_cashier": "J. S. Brogan",
+        "bank_name": "Citizens Bank",
+        "bonds": null,
+        "capital": 100000.0,
+        "cash": 250430.0,
+        "cashier": "W. E. Kahler",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Chase N.",
+            "state": null
+          },
+          {
+            "city": "New York",
+            "name": "Irving N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "4th St. N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Corn Ex. N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Phil. N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Franklin N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Chase N. and Irving N., N. Y.; 4th St. N., Corn Ex. N., Phil. N. and Franklin N., Phil.",
+        "county_name": "Luzerne",
+        "deposits": 2111840.0,
+        "established_year": 90,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": true,
+        "loans": 2062630.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "William Birkbeck",
+        "state_abbreviation": "PA",
+        "surplus": 161280.0,
+        "town_name": "Freeland",
+        "town_pop": 6666,
+        "transit_number": "60-651",
+        "vice_president": "John Shigo"
+      },
+      {
+        "assistant_cashier": "John J. McGarey",
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 75000.0,
+        "cash": 159120.0,
+        "cashier": "G. S. Christian",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Irving N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "1st N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Phil. N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Irving N., N. Y.; 1st N. and Phil. N., Phil.",
+        "county_name": "Luzerne",
+        "deposits": 1578980.0,
+        "established_year": 2,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 1621460.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 98000.0,
+        "president": "J. G. Saricks",
+        "state_abbreviation": "PA",
+        "surplus": 28600.0,
+        "town_name": "Freeland",
+        "town_pop": 6666,
+        "transit_number": "60-652",
+        "vice_president": "S. S. Hess"
+      },
+      {
+        "assistant_cashier": null,
+        "bank_name": "FARMERS NAT'L BANK",
+        "bonds": null,
+        "capital": 50000.0,
+        "cash": 70500.0,
+        "cashier": "F. K. WEAVER",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. City",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Bk. of Pitt. N. A.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Mellon N.",
+            "state": null
+          },
+          {
+            "city": "Philadelphia",
+            "name": "Girard N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. City, N. Y.; Bk. of Pitt. N. A. and Mellon N., Pitt.; Girard N., Phil.",
+        "county_name": "Armstrong",
+        "deposits": 760140.0,
+        "established_year": 4,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 838420.0,
+        "misc_notes": "Special attention is given Bill of Lading drafts, Cash and Time Items. Send us your Freeport Items. Please send 15c with each sight draft for presentation and 25c for Credit Reports.",
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 50000.0,
+        "president": "T. G. CORNELL",
+        "state_abbreviation": "PA",
+        "surplus": 48790.0,
+        "town_name": "Freeport",
+        "town_pop": 2696,
+        "transit_number": "60-899",
+        "vice_president": "W. F. TURNER; H. C. BRENNEMAN"
+      },
+      {
+        "assistant_cashier": "H. G. Ralston",
+        "bank_name": "Freeport Bank & Trust Co.",
+        "bonds": null,
+        "capital": 125000.0,
+        "cash": 145300.0,
+        "cashier": "A. M. Johnston",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Han. N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Far. Dep. N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Union Tr. Co.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Mellon N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Han. N., N. Y.; Far. Dep. N., Union Tr. Co. and Mellon N., Pitt.",
+        "county_name": "Armstrong",
+        "deposits": 1150000.0,
+        "established_year": 68,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": true,
+        "loans": 1139200.0,
+        "misc_notes": null,
+        "old_name": "Freeport Bank",
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "Isaac Guckenheimer",
+        "state_abbreviation": "PA",
+        "surplus": 50000.0,
+        "town_name": "Freeport",
+        "town_pop": 2696,
+        "transit_number": "60-898",
+        "vice_president": "Beynard Way"
+      },
+      {
+        "assistant_cashier": "S. S. Seigwarth",
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 25000.0,
+        "cash": 66160.0,
+        "cashier": "M. M. Fleming",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Han. N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Union N.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Mellon N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Han. N., N. Y.; Union N. and Mellon N., Pitt.",
+        "county_name": "Clarion",
+        "deposits": 495010.0,
+        "established_year": 9,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 522180.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": 25000.0,
+        "president": "H. N. Hess",
+        "state_abbreviation": "PA",
+        "surplus": 43330.0,
+        "town_name": "Fryburg",
+        "town_pop": 100,
+        "transit_number": "60-1166",
+        "vice_president": "H. C. Faller"
+      },
+      {
+        "assistant_cashier": "R. C. Straley",
+        "bank_name": "First National Bank",
+        "bonds": null,
+        "capital": 50000.0,
+        "cash": 89290.0,
+        "cashier": "J. C. Gault",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Guaran'y Tr. Co.",
+            "state": null
+          },
+          {
+            "city": "Pittsburgh",
+            "name": "Bk. of Pitt. N. A.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Guaran'y Tr. Co., N. Y.; Bk. of Pitt. N. A., Pitt.",
+        "county_name": "Potter",
+        "deposits": 402100.0,
+        "established_year": 4,
+        "event": null,
+        "event_date": null,
+        "is_aba": true,
+        "is_branch": false,
+        "is_fed": true,
+        "is_private": false,
+        "is_sba": true,
+        "is_state": false,
+        "loans": 450490.0,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "J. T. Hurd",
+        "state_abbreviation": "PA",
+        "surplus": 36680.0,
+        "town_name": "Galeton",
+        "town_pop": 2969,
+        "transit_number": "60-764",
+        "vice_president": "H. E. Seltz"
+      },
+      {
+        "assistant_cashier": "H. L. Lush",
+        "bank_name": "Galeton Banking Co.",
+        "bonds": null,
+        "capital": 50000.0,
+        "cash": null,
+        "cashier": "T. R. Quick",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Harriman N.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Harriman N., N. Y.",
+        "county_name": "Potter",
+        "deposits": null,
+        "established_year": 95,
+        "event": null,
+        "event_date": null,
+        "is_aba": false,
+        "is_branch": false,
+        "is_fed": false,
+        "is_private": true,
+        "is_sba": true,
+        "is_state": true,
+        "loans": null,
+        "misc_notes": null,
+        "old_name": null,
+        "other_assets": null,
+        "other_liabs": null,
+        "president": "Wm. O'Connor",
+        "state_abbreviation": "PA",
+        "surplus": 45000.0,
+        "town_name": "Galeton",
+        "town_pop": 2969,
+        "transit_number": "60-768",
+        "vice_president": "Geo. R. Mathers"
+      }
+    ],
+    "is_advertisment": false
+  },
+  "extraction_sha256": "99100169f4c135af7ce68fe70c1a52b5cc36fd980c59bc319a63048788df1efa",
+  "page_id": "1922-2-hathi.pdf#page=1654",
+  "postcall_reference_corrections": [
+    {
+      "basis": "Both names are printed in the Cashier column; Tr. and A.Tr. title text is ignored.",
+      "corrected": "M. R. Morgan; H. R. Harvey",
+      "path": "banks[3].cashier",
+      "prior": "M. R. Morgan"
+    },
+    {
+      "basis": "Both names are printed in the Cashier column; Tr. and A.Tr. title text is ignored.",
+      "corrected": "R. R. BLEAKLEY; W. W. BLEAKLEY",
+      "path": "banks[8].cashier",
+      "prior": "R. R. BLEAKLEY"
+    },
+    {
+      "basis": "Native 400 dpi crop clearly reads 128,000.",
+      "corrected": 128000.0,
+      "path": "banks[9].other_liabs",
+      "prior": 123000.0
+    },
+    {
+      "basis": "Opening and closing parentheses are printed.",
+      "corrected": "(Members indicated by a *)",
+      "path": "banks[10].misc_notes",
+      "prior": "Members indicated by a *"
+    }
+  ],
+  "precall_reference_path": "/home/sergio/Dropbox/Projects/Historical-Documents/Rand-McNally-v2/manual/model-benchmarks/gemini-3.8-vs-3.7-1922-2-page-1654/reference-precall.json",
+  "precall_reference_sha256": "e5e1708d83a1c761e51ac94d8f8571b47ddb8cb06cc32910a75622c9f4ab15a0",
+  "printed_page": 1357,
+  "prompt_path": "/home/sergio/Dropbox/Projects/Historical-Documents/Rand-McNally-v2/code/prompt_1911.md",
+  "prompt_sha256": "07686350ccae6f60d571b1e78b535ba9a05232ad63591d13adcddcec24824d59",
+  "render": {
+    "dpi": 400,
+    "format": "lossless WebP",
+    "height_pixels": 3126,
+    "orientation_normalization": "90 degrees clockwise; no crop or enhancement",
+    "source_renderer": "pdftoppm (Poppler)",
+    "width_pixels": 4445
+  },
+  "render_bytes": 7095660,
+  "render_path_at_transcription": "/tmp/pdfs/1922-2-hathi-page-1654-400dpi-upright.webp",
+  "render_sha256": "6613c21a493e24c1b235c131bc831e360976fe8cca56a3008008cbdad616b953",
+  "review": {
+    "bank_count": 22,
+    "correspondent_count": 62,
+    "correspondent_state_policy": "Literal prompt reference: state is null unless printed. Reasonable state inference from an unambiguous city will be reported separately and will not count as a substantive extraction error.",
+    "officer_title_policy": "Names physically printed in cashier and assistant-cashier columns are retained while Tr., A.Tr., Sec., and A.Sec. title text is omitted, following the prompt's instruction to ignore those titles.",
+    "postcall_correction_note": "The pre-call reference remains immutable. These corrections were found during the required full-resolution discrepancy review and are applied only in this adjudicated reference.",
+    "postcall_reference_correction_count": 4,
+    "reviewed_complete_page_at_full_400_dpi_resolution": true
+  },
+  "scaffold": {
+    "known_scaffold_defects_corrected": [
+      "two-digit establishment years had been expanded to four digits",
+      "Galeton Banking Co. transit 60-768 was missing",
+      "multi-bank correspondent groups were not fully split",
+      "correspondents_raw was absent",
+      "correspondent states had been inferred despite not being printed",
+      "collection and service notes were absent"
+    ],
+    "path": "/home/sergio/data/rand-mcnally-v1/cache/1922-2-part-7/22.json",
+    "purpose": "row-order scaffold only; all values visually checked against the rendered page",
+    "sha256": "1efa75bd2d5f795f37aa7fe2f812c7c85ff7b52393a6e760effc5a72109b9008"
+  },
+  "schema_path": "/home/sergio/Dropbox/Projects/Historical-Documents/Rand-McNally-v2/code/schema_1911.py",
+  "schema_sha256": "4feed59793dd37077598012f3446d2ef942d2767ac19d9cc0125a63668f2bb54",
+  "schema_version": "rand-mcnally-model-benchmark-reference/v2",
+  "selection": {
+    "command": "shuf -i 100-2900 -n 1",
+    "disposition": "accepted first draw; valid bank table",
+    "draw": 1654,
+    "eligible_physical_pages": {
+      "count": 2801,
+      "first": 100,
+      "last": 2900
+    },
+    "method": "single uniform random draw without replacement or redraw"
+  },
+  "source_bytes": 1151475030,
+  "source_path": "/home/sergio/Dropbox/Projects/Historical-Documents/Rand McNally/sources/1922-2-hathi.pdf",
+  "source_sha256": "160341b70b500a7333599b382936ea5f41f09aa91a88633d93685b6e7a370d92",
+  "status": "postcall_manual_adjudication"
+}

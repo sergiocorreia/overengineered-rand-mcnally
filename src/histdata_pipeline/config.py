@@ -44,7 +44,40 @@ class ProjectConfig:
         path = Path(value).expanduser()
         if not path.is_absolute():
             raise ValueError("storage.external_data_root must be absolute")
-        return path.resolve()
+        resolved = path.resolve()
+        for label, immutable_root in self._immutable_roots():
+            if resolved.is_relative_to(immutable_root) or immutable_root.is_relative_to(resolved):
+                raise ValueError(f"storage.external_data_root overlaps immutable restoration.{label}")
+        return resolved
+
+    def _immutable_roots(self) -> tuple[tuple[str, Path], ...]:
+        restoration = self.table("restoration")
+        roots: list[tuple[str, Path]] = []
+        for label in ("legacy_root", "recovered_v1_root"):
+            value = str(restoration.get(label, "")).strip()
+            if not value:
+                continue
+            path = Path(value).expanduser()
+            if not path.is_absolute():
+                raise ValueError(f"restoration.{label} must be absolute")
+            if restoration.get(f"{label}_read_only") is not True:
+                raise ValueError(f"project.toml must declare restoration.{label}_read_only = true")
+            roots.append((label, path.resolve()))
+        return tuple(roots)
+
+    def checked_write_path(self, path: Path) -> Path:
+        """Resolve and confine a write destination to mutable V2 storage."""
+
+        resolved = path.expanduser().resolve()
+        immutable_roots = self._immutable_roots()
+        for label, immutable_root in immutable_roots:
+            if resolved.is_relative_to(immutable_root) or immutable_root.is_relative_to(resolved):
+                raise ValueError(f"Write path overlaps immutable restoration.{label}: {resolved}")
+        project_root = self.root.resolve()
+        external_root = self.external_root
+        if not (resolved.is_relative_to(project_root) or resolved.is_relative_to(external_root)):
+            raise ValueError(f"Write path is outside the V2 project and external root: {resolved}")
+        return resolved
 
     @property
     def pdf_directory(self) -> Path:

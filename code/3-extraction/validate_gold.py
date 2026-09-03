@@ -46,6 +46,8 @@ def _scalar_text(value: Any) -> str:
 
 def validate() -> dict[str, Any]:
     config = load_project_config()
+    gate_path = (config.root / "manual" / "gold" / "production_gate.json").absolute()
+    config.checked_write_path(gate_path)
     record_list_field = str(config.table("extraction").get("record_list_field", "records"))
     contract = build_contract(config, service="flex")
     selection_evidence = validate_selection_current(config)
@@ -133,7 +135,6 @@ def validate() -> dict[str, Any]:
         if actual != str(expectation.get("expected_value", "")):
             discrepancies.append(f"expectations.tsv line {row_number}: expected {expectation.get('expected_value')!r}, gold has {actual!r}")
 
-    gate_path = config.root / "manual" / "gold" / "production_gate.json"
     old_gate = json.loads(gate_path.read_text(encoding="utf-8"))
     same_evidence = old_gate.get("contract_signature") == contract.signature and old_gate.get("evidence_signature") == evidence["signature"]
     gate = {

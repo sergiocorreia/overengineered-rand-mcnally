@@ -8,6 +8,7 @@ import io
 from dataclasses import replace
 from pathlib import Path
 
+import build_page_manifest
 import page_inventory
 import pytest
 from pypdf import PdfWriter
@@ -28,6 +29,36 @@ def write_tsv(path: Path, fields: tuple[str, ...], rows: list[dict[str, object]]
         writer = csv.DictWriter(output, fieldnames=fields, delimiter="\t", lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
+
+
+def write_project_config(project: Path, tmp_path: Path) -> None:
+    project.mkdir(parents=True, exist_ok=True)
+    (project / "project.toml").write_text(
+        f"""
+[template]
+initialized = true
+
+[project]
+slug = "test-project"
+
+[restoration]
+legacy_root = "{tmp_path / 'legacy'}"
+legacy_root_read_only = true
+recovered_v1_root = "{tmp_path / 'recovered-v1'}"
+recovered_v1_root_read_only = true
+
+[storage]
+external_data_root = "{tmp_path / 'external'}"
+pdf_storage = "external"
+external_pdf_subdirectory = "pdfs"
+selection_cache_subdirectory = "selection-cache"
+
+[source]
+inventory = "data/source_inventory.tsv"
+""".strip()
+        + "\n",
+        encoding="utf-8",
+    )
 
 
 def source_row(source: page_inventory.InventorySource) -> dict[str, object]:
@@ -451,3 +482,37 @@ def test_bounded_candidate_updates_merge_without_reordering() -> None:
     assert [record.page_id for record in merged] == [first.page_id, second.page_id]
     assert [record.manifest_index for record in merged] == [0, 1]
     assert merged[1].ocr_method == "locro"
+
+
+@pytest.mark.parametrize(
+    ("command", "option"),
+    [
+        ("build", "--cache-root"),
+        ("build", "--output"),
+        ("gate", "--cache-root"),
+        ("gate", "--pages"),
+        ("gate", "--output"),
+    ],
+)
+@pytest.mark.parametrize("unsafe_name", ["legacy", "recovered-v1", "outside"])
+def test_inventory_write_destinations_are_checked_before_snapshot(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    command: str,
+    option: str,
+    unsafe_name: str,
+) -> None:
+    project = tmp_path / "project"
+    write_project_config(project, tmp_path)
+    candidate = tmp_path / unsafe_name / ("blocked.tsv" if option in {"--output", "--pages"} else "blocked")
+    monkeypatch.setattr(build_page_manifest, "PROJECT_ROOT", project)
+    monkeypatch.setattr(
+        page_inventory,
+        "create_selection_snapshot",
+        lambda *_args, **_kwargs: pytest.fail("Path validation must precede snapshot writes"),
+    )
+
+    with pytest.raises(ValueError, match="overlaps immutable restoration|outside the V2"):
+        build_page_manifest.main([command, option, str(candidate)])
+
+    assert not candidate.exists()

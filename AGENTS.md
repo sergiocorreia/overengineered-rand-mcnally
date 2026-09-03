@@ -19,7 +19,7 @@ Do not ask the owner for facts that are discoverable from the repository or sour
 ## Non-negotiable evidence rules
 
 - Never invent, impute, smooth, winsorize, or infer a source value merely because it looks plausible.
-- Preserve raw transcription beside every normalized date, amount, identity, or coded field.
+- Use source-faithful field types appropriate to each project. Do not require duplicate raw-value fields unless the project's own contract calls for them.
 - Distinguish blank, explicit zero, dash, textual `None`, unreadable, excluded, and not applicable.
 - Preserve visible corrections, crossed-out values, uncertainty, remarks, and substantive text outside standard boxes.
 - Keep original PDFs, rendered images, OCR, model caches, and run receipts immutable.

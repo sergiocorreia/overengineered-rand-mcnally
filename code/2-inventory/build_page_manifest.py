@@ -9,6 +9,8 @@ from pathlib import Path
 
 import page_inventory
 
+from histdata_pipeline.config import ProjectConfig, load_project_config
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -108,20 +110,20 @@ def parser() -> argparse.ArgumentParser:
     return result
 
 
-def build(args: argparse.Namespace) -> int:
-    if args.cache_root.resolve().is_relative_to(PROJECT_ROOT.resolve()):
-        raise ValueError(f"Page-selection caches must remain outside the project directory: {args.cache_root}")
-    output = args.output or (
-        PROJECT_ROOT / "data" / "pages.tsv"
-        if args.all or args.merge_existing
-        else PROJECT_ROOT / "temp" / "pages.sample.tsv"
+def build(args: argparse.Namespace, config: ProjectConfig) -> int:
+    cache_root = config.checked_write_path(args.cache_root)
+    if cache_root.is_relative_to(config.root.resolve()):
+        raise ValueError(f"Page-selection caches must remain outside the project directory: {cache_root}")
+    output = config.checked_write_path(
+        args.output
+        or (PROJECT_ROOT / "data" / "pages.tsv" if args.all or args.merge_existing else PROJECT_ROOT / "temp" / "pages.sample.tsv")
     )
     snapshot_inputs = [args.source_manifest, args.source_inventory, args.source_overrides, args.page_overrides]
     if args.merge_existing:
         snapshot_inputs.append(output)
     run_dir = page_inventory.create_selection_snapshot(
         snapshot_inputs,
-        args.cache_root / "runs",
+        cache_root / "runs",
     )
     manifest_snapshot = run_dir / args.source_manifest.name
     inventory_snapshot = run_dir / args.source_inventory.name
@@ -143,7 +145,7 @@ def build(args: argparse.Namespace) -> int:
     records = page_inventory.build_page_records(
         sources,
         args.pdf_root,
-        args.cache_root,
+        cache_root,
         source_overrides_path=source_overrides_snapshot,
         page_overrides_path=page_overrides_snapshot,
         ocr_mode=args.ocr_mode,
@@ -162,17 +164,20 @@ def build(args: argparse.Namespace) -> int:
     return 0
 
 
-def gate(args: argparse.Namespace) -> int:
-    if args.cache_root.resolve().is_relative_to(PROJECT_ROOT.resolve()):
-        raise ValueError(f"Page-selection snapshots must remain outside the project directory: {args.cache_root}")
+def gate(args: argparse.Namespace, config: ProjectConfig) -> int:
+    cache_root = config.checked_write_path(args.cache_root)
+    if cache_root.is_relative_to(config.root.resolve()):
+        raise ValueError(f"Page-selection snapshots must remain outside the project directory: {cache_root}")
+    pages_path = config.checked_write_path(args.pages)
+    output = config.checked_write_path(args.output)
     run_dir = page_inventory.create_selection_snapshot(
-        (args.source_manifest, args.source_inventory, args.pages, args.source_overrides, args.page_overrides, args.gold),
-        args.cache_root / "runs",
+        (args.source_manifest, args.source_inventory, pages_path, args.source_overrides, args.page_overrides, args.gold),
+        cache_root / "runs",
     )
     identities = page_inventory.load_source_identities(run_dir / args.source_manifest.name)
     inventory = page_inventory.load_inventory(run_dir / args.source_inventory.name)
     sources = page_inventory.reconcile_sources(identities, inventory, require_all=True)
-    records = page_inventory.load_page_records(run_dir / args.pages.name)
+    records = page_inventory.load_page_records(run_dir / pages_path.name)
     records = page_inventory.apply_manual_overrides(
         records,
         source_overrides_path=run_dir / args.source_overrides.name,
@@ -184,16 +189,17 @@ def gate(args: argparse.Namespace) -> int:
         expected_source_ids=(row.source_id for row in identities),
         gold_path=run_dir / args.gold.name,
     )
-    page_inventory.atomic_write_pages(args.pages, records)
-    page_inventory.atomic_write_pages(args.output, selected)
-    print(f"Extraction gate passed: {len(selected)} selected pages -> {args.output}")
+    page_inventory.atomic_write_pages(pages_path, records)
+    page_inventory.atomic_write_pages(output, selected)
+    print(f"Extraction gate passed: {len(selected)} selected pages -> {output}")
     print(f"Startup snapshots: {run_dir}")
     return 0
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
-    return build(args) if args.command == "build" else gate(args)
+    config = load_project_config(PROJECT_ROOT)
+    return build(args, config) if args.command == "build" else gate(args, config)
 
 
 if __name__ == "__main__":

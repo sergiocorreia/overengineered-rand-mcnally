@@ -11,6 +11,8 @@ from pathlib import Path
 
 from page_review import ReviewError, create_server
 
+from histdata_pipeline.config import load_project_config
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -68,14 +70,17 @@ def main(argv: list[str] | None = None) -> int:
     pdf_root, image_root, port = _project_defaults()
     parser = _parser(pdf_root, image_root, port)
     args = parser.parse_args(argv)
-    if args.image_root.resolve().is_relative_to(PROJECT_ROOT.resolve()):
-        parser.error(f"Rendered review images must remain outside the project directory: {args.image_root}")
     try:
+        config = load_project_config(PROJECT_ROOT)
+        page_overrides = config.checked_write_path(args.page_overrides)
+        image_root = config.checked_write_path(args.image_root)
+        if image_root.is_relative_to(config.root.resolve()):
+            raise ValueError(f"Rendered review images must remain outside the project directory: {image_root}")
         server = create_server(
             args.pages,
-            args.page_overrides,
+            page_overrides,
             args.pdf_root,
-            args.image_root,
+            image_root,
             Path(__file__).with_name("review_pages.html"),
             args.port,
         )
@@ -85,7 +90,7 @@ def main(argv: list[str] | None = None) -> int:
     state = server.store.public_state()
     progress = state["progress"]
     print(f"Review pages: {progress['resolved']}/{progress['total']} resolved")  # type: ignore[index]
-    print(f"Manual decisions: {args.page_overrides}")
+    print(f"Manual decisions: {page_overrides}")
     print(f"Open {url}")
     if not args.no_browser:
         threading.Timer(0.25, webbrowser.open, args=(url,)).start()

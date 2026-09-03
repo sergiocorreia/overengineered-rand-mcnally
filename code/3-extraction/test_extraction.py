@@ -7,6 +7,7 @@ from argparse import Namespace
 from pathlib import Path
 
 import extract_records
+import extraction_provider
 import pytest
 from contract import PIPELINE_SOURCE_NAMES, ExtractionContract, load_schema, make_contract_payload, validate_schema_field_names
 from extract_records import _overlay_current_page, _structural_error_envelope, _write_run, enforce_guards
@@ -372,6 +373,33 @@ def test_dry_run_is_a_no_provider_cache_preflight(tmp_path: Path, monkeypatch: p
     assert cache_only["model_requests"] == 0
 
 
+def test_export_root_is_rejected_before_page_preparation(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    project = config(tmp_path)
+    project.values["storage"]["export_subdirectory"] = "../escape"  # type: ignore[index]
+    (tmp_path / "data").mkdir()
+    row = page(1).values
+    with (tmp_path / "data" / "selected_pages.tsv").open("w", encoding="utf-8", newline="") as output:
+        writer = csv.DictWriter(output, fieldnames=list(row), delimiter="\t", lineterminator="\n")
+        writer.writeheader()
+        writer.writerow(row)
+    schema = load_schema(Path(__file__).parent / "definitions" / "schema.py")
+    contract = ExtractionContract("c" * 64, {}, "prompt", schema)
+    monkeypatch.setattr(extract_records, "load_project_config", lambda: project)
+    monkeypatch.setattr(extract_records, "validate_selection_current", lambda _config: {"signature": "s" * 64})
+    monkeypatch.setattr(extract_records, "production_evidence", lambda *_args, **_kwargs: {"signature": "e" * 64})
+    monkeypatch.setattr(extract_records, "build_contract", lambda *_args, **_kwargs: contract)
+    monkeypatch.setattr(
+        extract_records,
+        "_prepare_pages",
+        lambda *_args, **_kwargs: pytest.fail("page preparation must not start"),
+    )
+
+    with pytest.raises(ValueError, match="escapes external_data_root"):
+        extract_records.execute(
+            extract_records.build_parser().parse_args(["--limit", "1", "--dry-run", "--max-requests", "1"])
+        )
+
+
 def test_qc_queue_deduplicates_repeated_cases_per_page(tmp_path: Path) -> None:
     queue = tmp_path / "queue.tsv"
     queue.write_text("case_id\tpage_id\nq1\tvolume.pdf#page=1\nq2\tvolume.pdf#page=1\nq3\tvolume.pdf#page=2\n", encoding="utf-8")
@@ -437,6 +465,7 @@ def test_failed_provider_call_records_unknown_usage(tmp_path: Path, monkeypatch:
     fake_yachay = types.ModuleType("yachay")
     fake_yachay.OCR = FailingOCR
     monkeypatch.setitem(sys.modules, "yachay", fake_yachay)
+    monkeypatch.setattr(extraction_provider, "require_user_adc", lambda _project_id: None)
     schema = load_schema(Path(__file__).parent / "definitions" / "schema.py")
     contract = ExtractionContract("c" * 64, {}, "prompt", schema)
     result = extract_records._extract_one(

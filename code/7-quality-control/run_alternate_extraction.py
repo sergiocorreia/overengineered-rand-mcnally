@@ -26,6 +26,7 @@ from plan_alternate_extraction import build_plan, read_queue, unique_in_order
 
 from histdata_pipeline.config import ProjectConfig, load_project_config
 from histdata_pipeline.provenance import atomic_write_json, atomic_write_text, sha256_file, stable_hash
+from histdata_pipeline.user_adc import require_user_adc
 
 TOKEN_FIELDS = ("input_tokens", "output_tokens", "thoughts_tokens", "total_tokens")
 
@@ -111,6 +112,41 @@ def build_alternate_config(config: ProjectConfig, *, dpi: int) -> ProjectConfig:
     model["default_service"] = "standard"
     extraction["render_dpi"] = dpi
     return ProjectConfig(root=config.root, values=values)
+
+
+def _preflight_write_roots(config: ProjectConfig) -> dict[str, Path]:
+    """Resolve every alternate-extraction write root before any work begins."""
+    defaults = {
+        "render_subdirectory": "rendered-pages",
+        "cache_subdirectory": "data-extraction/cache",
+        "alternate_export_subdirectory": "data-extraction/alternate-exports",
+    }
+    return {
+        setting: config.checked_write_path(config.external_path(setting, default))
+        for setting, default in defaults.items()
+    }
+
+
+def _make_client(config: ProjectConfig, *, retry_errors: bool) -> Any:
+    model = config.table("model")
+    extraction = config.table("extraction")
+    project_id = str(model.get("project_id") or "").strip()
+    require_user_adc(project_id)
+
+    from yachay import OCR
+
+    return OCR(
+        project_id=project_id,
+        model=str(model.get("name")),
+        location=str(model.get("location", "global")),
+        temperature=float(model.get("temperature", 0.2)),
+        max_output_tokens=int(model.get("max_output_tokens", 64_000)),
+        think_level="high",
+        use_flex=False,
+        retry_errors=retry_errors,
+        raise_errors=True,
+        media_resolution=str(extraction.get("media_resolution", "ultra_high")),
+    )
 
 
 def build_alternate_contract(stage3: Stage3Modules, config: ProjectConfig, plan: Mapping[str, Any]) -> Any:
@@ -609,6 +645,7 @@ def execute(arguments: argparse.Namespace) -> dict[str, Any]:
         max_requests=arguments.max_requests,
     )
     config = load_project_config(arguments.root.resolve())
+    write_roots = _preflight_write_roots(config)
     stage3 = load_stage3(config.root)
     pages = _resolve_pages(config, stage3, arguments)
     alternate_settings = config.table("alternate_extraction")
@@ -674,22 +711,7 @@ def execute(arguments: argparse.Namespace) -> dict[str, Any]:
     attempt_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ") + "-" + secrets.token_hex(3)
     fresh: dict[tuple[str, int], dict[str, Any]] = {}
     if mode == "execute" and pending:
-        from yachay import OCR
-
-        model = alternate_config.table("model")
-        extraction = alternate_config.table("extraction")
-        client = OCR(
-            project_id=str(model.get("project_id") or "") or None,
-            model=str(model.get("name")),
-            location=str(model.get("location", "global")),
-            temperature=float(model.get("temperature", 0.2)),
-            max_output_tokens=int(model.get("max_output_tokens", 64_000)),
-            think_level="high",
-            use_flex=False,
-            retry_errors=arguments.retry_errors,
-            raise_errors=True,
-            media_resolution=str(extraction.get("media_resolution", "ultra_high")),
-        )
+        client = _make_client(alternate_config, retry_errors=arguments.retry_errors)
         for request in pending:
             fresh[(request.page.page_id, request.segment_index)] = _extract_request(
                 client,
@@ -728,7 +750,7 @@ def execute(arguments: argparse.Namespace) -> dict[str, Any]:
         page_status_field=str(extraction_settings.get("page_status_field", "document_status")),
         target_page_status=str(extraction_settings.get("target_page_status", "target")),
     )
-    export_root = config.external_path("alternate_export_subdirectory", "data-extraction/alternate-exports")
+    export_root = write_roots["alternate_export_subdirectory"]
     run_directory = export_root / attempt_id
     run_directory.mkdir(parents=True, exist_ok=False)
     atomic_write_json(run_directory / "plan.json", dict(plan))

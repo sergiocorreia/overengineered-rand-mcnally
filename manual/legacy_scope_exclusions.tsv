@@ -1,0 +1,31 @@
+year	edition	pdf_part	page_start	page_end	reason	evidence_source
+1935	1	8			Foreign/non-target section scanned by mistake.	code/6-improve-bank-data.do
+1936	1	7			Foreign/non-target section scanned by mistake.	code/6-improve-bank-data.do
+1936	1	8			Foreign/non-target section scanned by mistake.	code/6-improve-bank-data.do
+1918	1	3	19	26	Polk monthly bulletin embedded in the Rand scan.	code/6-improve-bank-data.do
+1935	1	2	153	153	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	1	2	164	164	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	1	4	83	83	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	1	6	98	98	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	1	6	119	119	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	1	6	223	223	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	1	6	278	278	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	1	7	220	220	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	2	3	3	3	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1935	2	4	4	4	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1936	1	2	147	147	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1936	1	5	4	4	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1936	2	6	120	120	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1936	2	7	116	116	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1936	2	8	75	75	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1937	1	3	142	142	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1937	1	6	131	131	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1937	1	7	162	162	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1937	2	6	247	247	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1938	1	7	4	4	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1939	2	5	107	107	False table fragment inside an advertisement.	code/6-improve-bank-data.do
+1911	1	0	445	445	Human-reviewed advertisement page.	input/manual-advertisement-pages-reviewed.tsv
+1915	1	0	699	699	Human-reviewed advertisement page.	input/manual-advertisement-pages-reviewed.tsv
+1915	2	5	34	34	Human-reviewed advertisement page.	input/manual-advertisement-pages-reviewed.tsv
+1918	2	7	40	40	Human-reviewed advertisement page.	input/manual-advertisement-pages-reviewed.tsv
+1918	2	4	76	76	Human-reviewed advertisement page.	input/manual-advertisement-pages-reviewed.tsv

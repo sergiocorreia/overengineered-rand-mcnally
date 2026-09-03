@@ -7,12 +7,13 @@ import hashlib
 import json
 import os
 import tempfile
-import tomllib
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from typing import Any
+
+from histdata_pipeline.config import ProjectConfig, load_project_config
 
 DIFF_FIELDS = (
     "correction_id",
@@ -257,6 +258,12 @@ def resolve_path(root: Path, configured: Any, default: str) -> Path:
     return candidate if candidate.is_absolute() else root / candidate
 
 
+def checked_output_paths(config: ProjectConfig, output: Path, diff: Path, receipt: Path) -> tuple[Path, Path, Path]:
+    """Validate the complete write set before publishing any correction artifact."""
+
+    return tuple(config.checked_write_path(path) for path in (output, diff, receipt))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
@@ -267,10 +274,10 @@ def main() -> None:
     parser.add_argument("--receipt", type=Path, help="Hash-bound lineage receipt; defaults beside --diff")
     arguments = parser.parse_args()
 
-    root = arguments.root.resolve()
-    raw = tomllib.loads((root / "project.toml").read_text(encoding="utf-8"))
-    dataset = raw.get("dataset", {})
-    quality = raw.get("quality", {})
+    config = load_project_config(arguments.root)
+    root = config.root
+    dataset = config.table("dataset")
+    quality = config.table("quality")
     record_id_field = str(dataset.get("record_id_field", "record_id"))
     source_hash_field = str(quality.get("source_hash_field", "source_sha256"))
     contract_field = str(quality.get("contract_signature_field", "contract_signature"))
@@ -291,10 +298,11 @@ def main() -> None:
     corrections_path = arguments.corrections or resolve_path(root, quality.get("corrections_tsv"), "manual/record_corrections.tsv")
 
     input_path = arguments.input.expanduser().absolute()
-    output_path = arguments.output.expanduser().absolute()
-    diff_path = arguments.diff.expanduser().absolute()
+    requested_output = arguments.output.expanduser().absolute()
+    requested_diff = arguments.diff.expanduser().absolute()
     corrections_path = corrections_path.expanduser().absolute()
-    receipt_path = (arguments.receipt or diff_path.with_name("correction-receipt.json")).expanduser().absolute()
+    requested_receipt = (arguments.receipt or requested_diff.with_name("correction-receipt.json")).expanduser().absolute()
+    output_path, diff_path, receipt_path = checked_output_paths(config, requested_output, requested_diff, requested_receipt)
     rows, fieldnames = read_tsv(input_path)
     correction_rows, _ = read_tsv(corrections_path, optional=True)
     corrections = parse_corrections(correction_rows)

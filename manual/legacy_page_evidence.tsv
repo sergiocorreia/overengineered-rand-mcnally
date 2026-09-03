@@ -1,0 +1,62 @@
+year	edition	pdf_part	pdf_page	evidence_family	strength	affected_records	evidence_source	note
+1888	2	0	311	documented_failure	hard		code/6-improve-bank-data.do	Legacy cleanup calls this an empty, bugged-out page.
+1888	2	0	364	documented_failure	hard		code/6-improve-bank-data.do	Legacy cleanup calls this an empty, bugged-out page.
+1888	2	0	382	documented_failure	hard		code/6-improve-bank-data.do	Legacy cleanup calls this an empty, bugged-out page.
+1894	1	0	550	documented_failure	hard		code/6-improve-bank-data.do	Legacy cleanup calls this an empty, bugged-out page.
+1900	1	0	416	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York table block.
+1900	1	0	417	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York table block.
+1900	1	0	418	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York table block.
+1900	1	0	419	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York table block.
+1900	1	0	420	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York table block.
+1900	1	0	421	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York table block.
+1914	2	0	943	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York page.
+1915	2	6	55	documented_rerun	strong		code/6-improve-bank-data.do	Legacy cleanup explicitly suggests redoing OCR for this New York page.
+1915	1	0	653	cropped_page	hard		code/6-improve-bank-data.do	Legacy cleanup says the page is cropped and incomplete.
+1907	1	6	37	cache_error	hard		/home/sergio/data/rand-mcnally-v1/cache/1907-1-part-6/37.error	Recovered main-bank cache contains an explicit provider error marker for this page.
+1883	2	0	155	cache_error	hard		/home/sergio/data/rand-mcnally-v1/cache/1883-2/155.error	Recovered main-bank cache contains an explicit provider error marker; the raw-scan page remains ineligible until its source identity is supported.
+1883	2	0	214	manual_correction	strong	1	input/manual-fixes.xlsx	Bank name was manually corrected.
+1894	1	0	451	location_correction	supporting	2	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1894	1	0	550	location_correction	supporting	3	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	47	location_correction	supporting	3	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	74	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	99	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	141	location_correction	supporting	2	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	185	location_correction	supporting	2	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	241	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	300	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	347	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	404	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	407	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	438	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	466	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	472	location_correction	supporting	3	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	475	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1898	2	0	530	location_correction	supporting	3	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1900	2	0	449	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1901	1	0	314	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1901	1	0	674	location_correction	supporting	2	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1905	2	0	556	location_correction	supporting	2	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1906	2	0	676	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1909	2	0	1013	location_correction	supporting	21	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1910	1	8	117	location_correction	supporting	27	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1910	2	0	59	location_correction	supporting	33	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1911	1	0	229	location_correction	supporting	34	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1911	1	0	238	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1911	1	0	287	location_correction	supporting	33	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1911	1	0	852	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1911	1	0	1237	location_correction	supporting	31	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1911	2	0	202	location_correction	supporting	12	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1937	2	2	175	location_correction	supporting	3	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1937	2	6	58	location_correction	supporting	8	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1938	1	4	37	location_correction	supporting	13	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1938	1	4	147	location_correction	supporting	1	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1938	1	5	24	location_correction	supporting	10	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1938	1	8	37	location_correction	supporting	4	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1939	1	5	6	location_correction	supporting	3	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1939	2	3	174	location_correction	supporting	2	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1940	1	7	129	location_correction	supporting	4	input/state-city-fixes.xlsx	Legacy state/city correction workbook.
+1924	1	2	1	correspondent_parse	supporting	1	code/CORRESPONDENT_ERRORS.md	Known grouping error; seed evidence only.
+1924	1	2	177	correspondent_parse	supporting	2	code/CORRESPONDENT_ERRORS.md	Known grouping error; seed evidence only.
+1924	1	3	228	correspondent_parse	supporting	1	code/CORRESPONDENT_ERRORS.md	Known city-as-bank error; seed evidence only.
+1924	1	5	75	correspondent_parse	supporting	1	code/CORRESPONDENT_ERRORS.md	Known city-as-bank error; seed evidence only.
+1923	1	5	208	correspondent_parse	supporting	1	code/CORRESPONDENT_ERRORS.md	Known repeated-city parsing error; seed evidence only.

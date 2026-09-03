@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from histdata_pipeline.config import load_project_config
+from histdata_pipeline.config import ProjectConfig, load_project_config
 from histdata_pipeline.provenance import stable_hash
 
 STAGE_THREE = Path(__file__).resolve().parents[1] / "3-extraction"
@@ -156,6 +156,12 @@ def apply_reviews(
     return output_rows, differences, flags
 
 
+def checked_output_paths(config: ProjectConfig, output: Path, diff: Path, flags: Path) -> tuple[Path, Path, Path]:
+    """Validate the complete write set before publishing any review artifact."""
+
+    return tuple(config.checked_write_path(path) for path in (output, diff, flags))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
@@ -164,6 +170,7 @@ def main() -> None:
     args = parser.parse_args()
     try:
         config = load_project_config()
+        output_path, diff_path, flags_path = checked_output_paths(config, args.output, args.diff, args.flags)
         export_root = config.external_path("export_subdirectory", "data-extraction/exports")
         run_directory = (export_root / "current").resolve(strict=True)
         run = verify_current(config, run_directory)
@@ -178,11 +185,11 @@ def main() -> None:
             schema=contract.schema,
             record_list_field=str(config.table("extraction").get("record_list_field", "records")),
         )
-        write_tsv(args.output.resolve(), rows)
-        write_tsv(args.diff.resolve(), differences, fieldnames=DIFF_FIELDS)
-        write_tsv(args.flags.resolve(), flags, fieldnames=FLAG_FIELDS)
+        write_tsv(output_path, rows)
+        write_tsv(diff_path, differences, fieldnames=DIFF_FIELDS)
+        write_tsv(flags_path, flags, fieldnames=FLAG_FIELDS)
         if flags:
-            raise ValueError(f"{len(flags)} flagged/excluded record review(s) remain blocking; see {args.flags}")
+            raise ValueError(f"{len(flags)} flagged/excluded record review(s) remain blocking; see {flags_path}")
     except (OSError, TypeError, ValueError, json.JSONDecodeError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         raise SystemExit(1) from error

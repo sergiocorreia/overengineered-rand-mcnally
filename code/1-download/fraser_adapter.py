@@ -14,6 +14,8 @@ import acquisition
 import download_sources
 import fraser
 
+from histdata_pipeline.config import load_project_config
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -110,6 +112,7 @@ def metadata_in_date_window(metadata: fraser.ItemMetadata, start: date | None, e
 
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
+    config = load_project_config(PROJECT_ROOT)
     defaults = project_defaults()
     limit = args.limit or int(defaults["limit"])
     if limit < 1:
@@ -117,8 +120,11 @@ def main(argv: list[str] | None = None) -> int:
     title_slug = args.title_slug or str(defaults["title_slug"])
     if not title_slug or re.fullmatch(r"[a-z0-9-]+", title_slug) is None:
         parser().error("Set a valid fraser.title_slug in project.toml or pass --title-slug")
-    metadata_path = args.metadata_jsonl or cast_path(defaults["metadata"])
-    output_manifest = args.output_manifest or cast_path(defaults["output"])
+    metadata_path = config.checked_write_path(args.metadata_jsonl or cast_path(defaults["metadata"]))
+    output_manifest = config.checked_write_path(args.output_manifest or cast_path(defaults["output"]))
+    if args.download:
+        download_args = download_sources.parser().parse_args(["--manifest", str(output_manifest)])
+        download_sources.validated_write_destinations(download_args, config, download_sources.project_defaults(config.root))
     start = args.start_date or optional_date(defaults["start_date"], "fraser.start_date")
     end = args.end_date or optional_date(defaults["end_date"], "fraser.end_date")
     if start is not None and end is not None and end < start:

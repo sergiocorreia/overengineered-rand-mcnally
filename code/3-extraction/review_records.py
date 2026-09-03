@@ -172,7 +172,8 @@ def main() -> None:
         contract = build_contract(config, service=service)
         if run_metadata.get("contract_signature") != contract.signature:
             raise ValueError("The run contract is stale relative to the current schema/prompt/settings")
-        store = RecordReviewStore(run, config.root / "manual" / "record-reviews", contract.schema)
+        review_directory = config.checked_write_path(config.root / "manual" / "record-reviews")
+        store = RecordReviewStore(run, review_directory, contract.schema)
         html = (Path(__file__).with_name("review_records.html")).read_bytes()
         port = args.port or int(config.table("review").get("port_records", 8766))
         server = ThreadingHTTPServer(("127.0.0.1", port), make_handler(config, store, html))

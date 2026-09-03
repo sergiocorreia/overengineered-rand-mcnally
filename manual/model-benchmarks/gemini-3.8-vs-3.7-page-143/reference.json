@@ -1,0 +1,1332 @@
+{
+  "expected_bank_count": 40,
+  "expected_correspondent_count": 77,
+  "extraction": {
+    "banks": [
+      {
+        "address": null,
+        "bank_name": "Farmers' & Merchants' Bank",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "Chicago",
+            "name": "Commercial National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": " | Commercial National Bank.",
+        "county_name": "Republic",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "(McClun & Allison)",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Scandia",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "L. L. Turner & Co.",
+        "bank_type": "commercial",
+        "capital": 25000.0,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Kountze Bros.",
+            "state": null
+          },
+          {
+            "city": "St. Louis",
+            "name": "St. Louis Nat. Bk.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Kountze Bros. | St. Louis Nat. Bk., St. Louis",
+        "county_name": "Chautauqua",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Sedan",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Citizens' Savings Bank",
+        "bank_type": "commercial",
+        "capital": 10000.0,
+        "cashier": "T. R. Hazard",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "First National Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Bk. of Kan. City",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "First National Bank. | Bk. of Kan. City, Kan. City.",
+        "county_name": "Harvey",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "W. M. Congdon",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": 12000.0,
+        "town_name": "Sedgwick City",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "State Bank of Kansas",
+        "bank_type": "commercial",
+        "capital": 40000.0,
+        "cashier": "Willis Brown",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Bank of North America",
+            "state": null
+          },
+          {
+            "city": "St. Joseph",
+            "name": "Schuster, Hax & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Bank of North America. | Schuster, Hax & Co., St. Jo.",
+        "county_name": "Nemaha",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "Edwin Knowles",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": 5000.0,
+        "town_name": "Seneca",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "B. F. Harpster & Co.",
+        "bank_type": "commercial",
+        "capital": 10000.0,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Donnell, Lawson & Simpson",
+            "state": null
+          },
+          {
+            "city": "St. Joseph",
+            "name": "State Sav. Bk.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Donnell, Lawson & Simpson | State Sav. Bk., St. Joseph.",
+        "county_name": "Doniphan",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": 8000.0,
+        "town_name": "Severance",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Smith County Bank",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": "W. S. Field",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Continental National Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Merchants' N. B.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Continental National Bank. | Merchants' N. B., Kan. City.",
+        "county_name": "Smith",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "N. S. Field",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Smith Center",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Solomon Valley Bank",
+        "bank_type": "commercial",
+        "capital": 10000.0,
+        "cashier": "Amos E. Wilson",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Chase National Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Merchants' N. B.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Chase National Bank. | Merchants' N. B., Kan. City.",
+        "county_name": "Dickinson",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "Park S. Warren",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Solomon City",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Corn Exchange Bank",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": "J. C. Rogers",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Oriental Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Armour Bros.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Oriental Bank. | Armour Bros., Kansas City.",
+        "county_name": "Johnson",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Spring Hill",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Farmers' Bank of Rice County",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Central National Bank",
+            "state": null
+          },
+          {
+            "city": "Emporia",
+            "name": "Emporia Nat. Bk.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Central National Bank. | Emporia Nat. Bk., Emporia.",
+        "county_name": "Rice",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "(Landis & Hollinger)",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Sterling",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Rice County Bank",
+        "bank_type": "commercial",
+        "capital": 15000.0,
+        "cashier": "W. Q. Elliott",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Chemical National Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Bank of Kan. City",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Chemical National Bank. | Bank of Kan. City, Kan. City",
+        "county_name": "Rice",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Sterling",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "W. E. Clarke",
+        "bank_type": "commercial",
+        "capital": 9500.0,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Importers' & Traders' N. Bk.",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Merchants' N. B.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Importers' & Traders' N. Bk. | Merchants' N. B., Kan. City.",
+        "county_name": "Rice",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Sterling",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Silas B. Warren & Co.",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": "Amos E. Wilson, Actg.",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Chase National Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Missouri Valley Bk.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Chase National Bank. | Missouri Valley Bk., K. City",
+        "county_name": "Pottawatomie",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "St. Mary's",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Stockton Bank",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "Chicago",
+            "name": "Commercial National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": " | Commercial National Bank.",
+        "county_name": "Rooks",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "(Jay J. Smyth & Co.)",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Stockton",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Chatham T. Ewing & Co.",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Geo. Opdyke & Co.",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Bk. of Kan. City",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Geo. Opdyke & Co. | Bk. of Kan. City, Kan. City.",
+        "county_name": "Neosho",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Thayer",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Topeka Bank",
+        "bank_type": "commercial",
+        "capital": 100000.0,
+        "cashier": "Byron Roberts",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Fourth National Bank",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "Union National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Fourth National Bank. | Union National Bank.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "John R. Mulvane",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": 28500.0,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Topeka State Bank",
+        "bank_type": "commercial",
+        "capital": 100000.0,
+        "cashier": "James F. Griffin",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Importers' & Traders' N. Bk.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "Preston, Kean & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Importers' & Traders' N. Bk. | Preston, Kean & Co.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "C. W. Jewell",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Guilford Dudley",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": "W. O. Ewing",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "National Bank of Commerce",
+            "state": null
+          },
+          {
+            "city": "St. Louis",
+            "name": "Bartholow, Lewis & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "National Bank of Commerce | Bartholow, Lewis & Co. St. L.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Gavitt & Scott",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Chase National Bank",
+            "state": null
+          },
+          {
+            "city": "Manchester",
+            "name": "Merch N. B.",
+            "state": "NH"
+          }
+        ],
+        "correspondents_raw": "Chase National Bank. | Merch N. B. Manchester, N. H",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "John D. Knox & Co.",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Geo. Opdyke & Co.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "First National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Geo. Opdyke & Co. | First National Bank.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": "(See Card, p. 406.)",
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "H. R. Prather & Co. (Brokers)",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Fisk & Hatch",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "Preston, Kean & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Fisk & Hatch. | Preston, Kean & Co.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": "(See Card, p. 406.)",
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "A. Prescott & Co.",
+        "bank_type": "commercial",
+        "capital": 58000.0,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "American Exchange Nat. Bk.",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Bk. of Kan. City",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "American Exchange Nat. Bk. | Bk. of Kan. City, Kan. City.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": "(See Card, p. 406.)",
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Henry Taylor",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Fourth National Bank",
+            "state": null
+          },
+          {
+            "city": "Leavenworth",
+            "name": "First Nat. B.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Fourth National Bank. | First Nat. B., Leavenworth.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Citizens' Bank",
+        "bank_type": "commercial",
+        "capital": 50000.0,
+        "cashier": "Jonathan Thomas",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Merchants' Exchange N. B.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "Commercial National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Merchants' Exchange N. B. | Commercial National Bank.",
+        "county_name": "Shawnee",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": "(See Card, p. 406.)",
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Topeka (North)",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Boder Brothers",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Donnell, Lawson & Simpson",
+            "state": null
+          },
+          {
+            "city": "St. Louis",
+            "name": "Third Nat. Bk.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Donnell, Lawson & Simpson | Third Nat. Bk., St. Louis.",
+        "county_name": "Doniphan",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Troy",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Valley Bank",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": "Halleck D. Butts",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Gilman, Son & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Gilman, Son & Co. | ",
+        "county_name": "Jefferson",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "M. P. Hillyer",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Valley Falls",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Valley Falls Bank of Deposit",
+        "bank_type": "commercial",
+        "capital": 50000.0,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Donnell, Lawson & Simpson",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "First National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Donnell, Lawson & Simpson | First National Bank.",
+        "county_name": "Jefferson",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "(R. H. Crosby)",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Valley Falls",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Hicks, Gephart & Co.",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "George Opdyke & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "George Opdyke & Co. | ",
+        "county_name": "Jefferson",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Valley Falls",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Ellsworth Bros.",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": "E. E. Ellsworth",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "American Exch. Nat. Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Bk. of Kan. City",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "American Exch. Nat. Bank. | Bk. of Kan. City, Kan. City.",
+        "county_name": "Trego",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Wakeeney",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "J. C. Rogers & Co.",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Oriental Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Armour Bros.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Oriental Bank | Armour Bros., Kansas City.",
+        "county_name": "Pottawatomie",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Wamego",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Washington County Bank",
+        "bank_type": "commercial",
+        "capital": 30000.0,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Geo. Opdyke & Co.",
+            "state": null
+          },
+          {
+            "city": "Atchison",
+            "name": "First National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Geo. Opdyke & Co. | First National Bank, Atch.",
+        "county_name": "Washington",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "(Head Bros.)",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Washington",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "S. T. Powell",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Donnell, Lawson & Simpson",
+            "state": null
+          },
+          {
+            "city": "Atchison",
+            "name": "Atchison Sav. Bk.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Donnell, Lawson & Simpson | Atchison Sav. Bk., Atchison.",
+        "county_name": "Marshall",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Waterville",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Wellington Bank",
+        "bank_type": "commercial",
+        "capital": 75000.0,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Chase National Bank",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Kan. City Sav. Asso.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Chase National Bank. | Kan. City Sav. Asso. K. City",
+        "county_name": "Sumner",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "(J. E. Neal & Son)",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Wellington",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "John G. Woods",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Donnell, Lawson & Simpson",
+            "state": null
+          },
+          {
+            "city": "St. Louis",
+            "name": "Third Nat. Bk.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Donnell, Lawson & Simpson | Third Nat. Bk., St. Louis.",
+        "county_name": "Sumner",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Wellington",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Farmers' & Merchants' Bank",
+        "bank_type": "commercial",
+        "capital": 25000.0,
+        "cashier": "A. A. Hyde",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Donnell, Lawson & Simpson",
+            "state": null
+          },
+          {
+            "city": "St. Louis",
+            "name": "Bartholow, Lewis & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Donnell, Lawson & Simpson | Bartholow, Lewis & Co., St. L.",
+        "county_name": "Sedgwick",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "H. W. Lewis",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": 15000.0,
+        "town_name": "Wichita",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "First Arkansas Valley Bank",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": "W. T. Woodman",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "American Exchange N. Bk.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "First National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "American Exchange N. Bk. | First National Bank.",
+        "county_name": "Sedgwick",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "W. C. Woodman",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Wichita",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Kansas State Bank",
+        "bank_type": "commercial",
+        "capital": 52000.0,
+        "cashier": "L. D. Skinner",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Jesup, Paton & Co.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "Fifth National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Jesup, Paton & Co. | Fifth National Bank",
+        "county_name": "Sedgwick",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "B. Lombard, Jr.",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Wichita",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Wichita Bank",
+        "bank_type": "commercial",
+        "capital": 75000.0,
+        "cashier": "M. W. Levy",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "N. Park B.",
+            "state": null
+          },
+          {
+            "city": "New York",
+            "name": "Gilman, Son & Co.",
+            "state": null
+          },
+          {
+            "city": "Chicago",
+            "name": "First National Bank",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "N. Park B.; Gilman, Son & Co. | First National Bank.",
+        "county_name": "Sedgwick",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "Sol. H. Kohn",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": 75000.0,
+        "town_name": "Wichita",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "M. L. Read's Bank",
+        "bank_type": "commercial",
+        "capital": 50000.0,
+        "cashier": "M. L. Robinson",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Gilman, Son & Co.",
+            "state": null
+          },
+          {
+            "city": "Kansas City",
+            "name": "Bk. of Kan. City",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Gilman, Son & Co. | Bk. of Kan. City, Kan. City.",
+        "county_name": "Cowley",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "M. L. Read",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": 25000.0,
+        "town_name": "Winfield",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Winfield Bank",
+        "bank_type": "commercial",
+        "capital": 50000.0,
+        "cashier": "J. C. Fuller",
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "American Exchange N. Bk.",
+            "state": null
+          },
+          {
+            "city": "St. Louis",
+            "name": "Bartholow, Lewis & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "American Exchange N. Bk. | Bartholow, Lewis & Co., St. L.",
+        "county_name": "Cowley",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": "J. C. McMullen",
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Winfield",
+        "treasurer": null
+      },
+      {
+        "address": null,
+        "bank_name": "Northrup & Son",
+        "bank_type": "commercial",
+        "capital": null,
+        "cashier": null,
+        "ch_member": 0,
+        "correspondents": [
+          {
+            "city": "New York",
+            "name": "Donnell, Lawson & Simpson",
+            "state": null
+          },
+          {
+            "city": "St. Louis",
+            "name": "Bartholow, Lewis & Co.",
+            "state": null
+          }
+        ],
+        "correspondents_raw": "Donnell, Lawson & Simpson | Bartholow, Lewis & Co., St. L.",
+        "county_name": "Wyandotte",
+        "event": null,
+        "event_date": null,
+        "is_branch": false,
+        "misc_notes": null,
+        "old_name": null,
+        "president": null,
+        "secretary": null,
+        "state_abbreviation": "KS",
+        "surplus": null,
+        "town_name": "Wyandotte",
+        "treasurer": null
+      }
+    ],
+    "is_advertisment": false
+  },
+  "extraction_sha256": "dc6ebc56a74eb6f4f78a2a9d5c8be3692bf9d2d42b19e071c48c5a04b0d0854c",
+  "page_id": "1881-1-hathi.pdf#page=143",
+  "reference_notes": [
+    "The cashier for Silas B. Warren & Co. includes the visible qualifier 'Actg.'.",
+    "Four correspondent names retain the visible final period in '& Co.'.",
+    "The four parenthesized See Card notes retain their visible punctuation in misc_notes.",
+    "H. R. Prather & Co. (Brokers) remains an ordinary-table commercial record under the current schema semantics.",
+    "Correspondent state is null unless a state is printed; the Manchester entry retains the visible N. H as normalized NH. City-header inference populates city, not state.",
+    "A post-call consistency audit corrected the render hash, removed 76 inherited correspondent-state values, and restored four visible See Card parentheses. The byte-identical pre-call file is reference-precall.json. Corrections are based on the source and prompt, not on choosing a model output."
+  ],
+  "render_path": "/home/sergio/data/rand-mcnally-v2/rendered-pages/targeted/d5ab25c134152d26ea3cfb24999810f7a4796e3af251ef27153d1d1025a2a9f4/3d4a8c7aeae90b8116381811329ea6d3bc29d92c6ed13a273d63db70a5b0c7cd/1881-1-hathi/page-143.webp",
+  "render_sha256": "c93bca98818822fffdcfeb498b4d57ef40a4c8c33b230fcfa485feb7fe7e2095",
+  "review_method": "Full-page direct visual review at native resolution. The accepted 2026-09-02 Gemini 3.7 smoke result supplied row order only; every visible field was checked against the render before the fresh benchmark calls.",
+  "reviewed_at": "2026-09-02T18:39:31.961394+00:00",
+  "schema_version": "rand-mcnally-model-benchmark-reference/v2",
+  "supersedes_reference_sha256": "23b3a6982447fecbb0a9026f9d65f3f534b72f2d87fa0bf5329eb90831cdcd88",
+  "adjudicated_at": "2026-09-02T18:49:30+00:00",
+  "source_sha256": "3d4a8c7aeae90b8116381811329ea6d3bc29d92c6ed13a273d63db70a5b0c7cd"
+}

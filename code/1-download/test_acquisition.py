@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Self
 
 import acquisition
+import download_sources
 import pytest
 import requests
 from pypdf import PdfWriter
@@ -53,6 +54,37 @@ def write_manifest(path: Path, rows: list[acquisition.SourceRecord]) -> None:
             values = asdict(row)
             values["max_pages"] = "" if row.max_pages is None else row.max_pages
             writer.writerow(values)
+
+
+def write_project_config(project: Path, tmp_path: Path) -> None:
+    project.mkdir(parents=True, exist_ok=True)
+    (project / "project.toml").write_text(
+        f"""
+[template]
+initialized = true
+
+[project]
+slug = "test-project"
+
+[restoration]
+legacy_root = "{tmp_path / 'legacy'}"
+legacy_root_read_only = true
+recovered_v1_root = "{tmp_path / 'recovered-v1'}"
+recovered_v1_root_read_only = true
+
+[storage]
+external_data_root = "{tmp_path / 'external'}"
+pdf_storage = "external"
+external_pdf_subdirectory = "pdfs"
+acquisition_run_subdirectory = "acquisition-runs"
+
+[source]
+inventory = "data/source_inventory.tsv"
+sample_size = 1
+""".strip()
+        + "\n",
+        encoding="utf-8",
+    )
 
 
 class FakeResponse:
@@ -238,3 +270,53 @@ def test_manual_source_inventory_and_snapshots(tmp_path: Path) -> None:
     acquisition.append_event(run / "events.jsonl", {"source_id": manual.source_id, "status": resolved.status})
     assert (run / "source_manifest.tsv").read_bytes() == manifest.read_bytes()
     assert json.loads((run / "events.jsonl").read_text(encoding="utf-8"))["status"] == "valid_existing"
+
+
+@pytest.mark.parametrize("option", ["--external-data-root", "--pdf-root", "--inventory", "--run-root"])
+@pytest.mark.parametrize("unsafe_name", ["legacy", "recovered-v1", "outside"])
+def test_download_destinations_are_checked_before_network_or_write(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    option: str,
+    unsafe_name: str,
+) -> None:
+    project = tmp_path / "project"
+    write_project_config(project, tmp_path)
+    manifest = project / "source_manifest.tsv"
+    write_manifest(manifest, [record()])
+    candidate = tmp_path / unsafe_name / ("blocked.tsv" if option == "--inventory" else "blocked")
+    monkeypatch.setattr(download_sources, "PROJECT_ROOT", project)
+    monkeypatch.setattr(acquisition, "build_session", lambda: pytest.fail("Path validation must precede network setup"))
+
+    with pytest.raises(ValueError, match="overlaps immutable restoration|outside the V2"):
+        download_sources.main(["--manifest", str(manifest), option, str(candidate)])
+
+    assert not candidate.exists()
+
+
+def test_download_dry_run_accepts_current_v2_destinations(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    project = tmp_path / "project"
+    write_project_config(project, tmp_path)
+    manifest = project / "source_manifest.tsv"
+    write_manifest(manifest, [record()])
+    monkeypatch.setattr(download_sources, "PROJECT_ROOT", project)
+    monkeypatch.setattr(acquisition, "build_session", lambda: pytest.fail("Dry run must not build a network session"))
+
+    assert (
+        download_sources.main(
+            [
+                "--manifest",
+                str(manifest),
+                "--external-data-root",
+                str(tmp_path / "external"),
+                "--pdf-root",
+                str(tmp_path / "external" / "pdfs"),
+                "--inventory",
+                str(project / "data" / "source_inventory.tsv"),
+                "--run-root",
+                str(tmp_path / "external" / "acquisition-runs"),
+                "--dry-run",
+            ]
+        )
+        == 0
+    )
